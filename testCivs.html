@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civilizations | Civilization 6 Helper</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .victory-conditions {
+            margin-bottom: 20px;
+        }
+
+        .civilization {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 5px;
+            display: inline-block;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="C:\Users\natha\OneDrive\Desktop\Capstone Project\.vscode\testWonders.html">World Wonders</a>
+
+    <div class="victory-conditions">
+        <label>
+            <input type="checkbox" id="dominationCheckbox"> Domination
+        </label>
+        <label>
+            <input type="checkbox" id="cultureCheckbox"> Culture
+        </label>
+        <label>
+            <input type="checkbox" id="scienceCheckbox"> Science
+        </label>
+        <label>
+            <input type="checkbox" id="religionCheckbox"> Religion
+        </label>
+        <label>
+            <input type="checkbox" id="diplomacyCheckbox"> Diplomacy
+        </label>
+    </div>
+
+    <div class="civilizations" id="civilizationsList">
+        <!-- Civilizations will be dynamically added here -->
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const checkboxes = document.querySelectorAll("input[type=checkbox]");
+            const civilizationsList = document.getElementById("civilizationsList");
+
+            // List of all civilizations
+            const civilizations = [
+                { name: "America", victory: ["culture", "domination", "diplomacy"] },
+                { name: "Arabia", victory: ["religion", "science"] },
+                { name: "Australia", victory: ["science"]},
+                { name: "Aztec", victory: ["domination"] },
+                { name: "Babylon", victory: ["domination"]},
+                { name: "Brazil", victory: ["culture", "domination", "religion", "science"] },
+            ];
+
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener("change", updateCivilizations);
+            });
+
+            // Initial rendering on page load
+            updateCivilizations();
+
+            function updateCivilizations() {
+                const selectedVictories = Array.from(checkboxes)
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => checkbox.id.replace("Checkbox", ""));
+
+                renderCivilizations(selectedVictories);
+            }
+
+            function renderCivilizations(selectedVictories) {
+                civilizationsList.innerHTML = "";
+
+                civilizations.forEach(civilization => {
+                    const civilizationElement = document.createElement("div");
+                    civilizationElement.classList.add("civilization");
+
+                    // Check if civilization has victory conditions defined and at least one of them matches any of the selected victories
+                    const victoryMatch = civilization.victory && civilization.victory.some(victory => selectedVictories.includes(victory));
+
+                    if (victoryMatch) {
+                        civilizationElement.style.backgroundColor = "lightgreen"; // Highlight for matching civilizations
+                    } else {
+                        civilizationElement.style.backgroundColor = "lightgray"; // Dim for non-matching civilizations
+                    }
+
+                    civilizationElement.textContent = civilization.name; // Display only the civilization name
+
+                    civilizationsList.appendChild(civilizationElement);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
