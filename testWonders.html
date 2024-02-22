@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wonders | Civilization 6 Helper</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .victory-conditions {
+            margin-bottom: 20px;
+        }
+
+        .wonder {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 5px;
+            display: inline-block;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="victory-conditions">
+        <label>
+            <input type="checkbox" id="dominationCheckbox"> Domination
+        </label>
+        <label>
+            <input type="checkbox" id="cultureCheckbox"> Culture
+        </label>
+        <label>
+            <input type="checkbox" id="scienceCheckbox"> Science
+        </label>
+        <label>
+            <input type="checkbox" id="religionCheckbox"> Religion
+        </label>
+        <label>
+            <input type="checkbox" id="diplomacyCheckbox"> Diplomacy
+        </label>
+    </div>
+
+    <div class="wonders" id="wondersList">
+        <!-- World wonders will be dynamically added here -->
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const checkboxes = document.querySelectorAll("input[type=checkbox]");
+            const wondersList = document.getElementById("wondersList");
+
+            //List of all wonders
+            const wonders = [
+                { name: "Great Bath", victory: ["all"], tier: "good" },
+                { name: "Hanging Gardens", victory: ["all"], tier: "not worth" },
+                { name: "Stonehenge", victory: ["religion"], tier: "good" },
+                { name: "Temple of Artemis", victory: ["all"], tier: "best" },
+                { name: "Etemenanki", victory: ["science"], tier: "good" },
+                { name: "Oracle", victory: ["all"], tier: "good" },
+                { name: "Pyramids", victory: ["all"], tier: "good" },
+                { name: "Apadana", victory: ["culture", "diplomacy"], tier: "good" },
+                { name: "Colosseum", victory: ["all"], tier: "best" },
+                { name: "Great Lighthouse", victory: ["domination"], tier: "niche" },
+                { name: "Jebel Barkal", victory: ["domination", "culture", "religion"], tier: "good" },
+                { name: "Mahabodhi Temple", victory: ["religion", "diplomacy"], tier: "good", requiresAllVictories: true },
+                { name: "Statue of Zeus", victory: ["domination"], tier: "good" },
+                { name: "Great Library", victory: ["culture", "science"], tier: "good" },
+                { name: "Mausoleum at Halicarnassus", victory: ["science", "culture"], tier: "good" },
+                { name: "Colossus", victory: ["all"], tier: "good" },
+                { name: "Machu Picchu", victory: ["science", "culture", "diplomacy"], tier: "good" },
+                { name: "Petra", victory: ["all"], tier: "good" },
+                { name: "Terracotta Army", victory: ["domination", "culture"], tier: "good", requiresAllVictories: true },
+                { name: "Hagia Sophia", victory: ["religion"], tier: "good" },
+                { name: "Huey Teocalli", victory: ["all"], tier: "good" },
+                { name: "Kilwa Kisiwani", victory: ["all"], tier: "best" },
+                { name: "Meenakshi Temple", victory: ["religion"], tier: "niche" },
+                { name: "Kotoku-in", victory: ["religion", "domination"], tier: "not worth", requiresAllVictories: true },
+                { name: "Mont St. Michel", victory: ["culture", "religion"], tier: "good", requiresAllVictories: true },
+                { name: "Alhambra", victory: ["domination"], tier: "good" },
+                { name: "University of Sankore", victory: ["science", "religion"], tier: "good" },
+                { name: "Angkor Wat", victory: ["all"], tier: "not worth" },
+                { name: "Chichen Itza", victory: ["culture"], tier: "good" },
+                { name: "St. Basil's Cathedral", victory: ["religion", "culture"], tier: "good", requiresAllVictories: true },
+                { name: "Casa de Contratacion", victory: ["all"], tier: "good" },
+                { name: "Forbidden City", victory: ["all"], tier: "best" },
+                { name: "Great Zimbabwe", victory: ["all"], tier: "good" },
+                { name: "Taj Mahal", victory: ["all"], tier: "good" },
+                { name: "Venetian Arsenal", victory: ["domination"], tier: "niche" },
+                { name: "Torre de Belem", victory: ["all"], tier: "good" },
+                { name: "Potala Palace", victory: ["diplomacy"], tier: "good" },
+                { name: "Bolshoi Theatre", victory: ["culture"], tier: "good" },
+                { name: "Oxford University", victory: ["science"], tier: "good" },
+                { name: "Ruhr Valley", victory: ["domination", "science", "culture"], tier: "good" },
+                { name: "Statue of Liberty", victory: ["diplomacy"], tier: "good" },
+                { name: "Hermitage", victory: ["culture"], tier: "good" },
+                { name: "Orszaghaz", victory: ["diplomacy"], tier: "good" },
+                { name: "Panama Canal", victory: ["all"], tier: "niche" },
+                { name: "Big Ben", victory: ["all"], tier: "good" },
+                { name: "Eiffel Tower", victory: ["culture"], tier: "good" },
+                { name: "Golden Gate Bridge", victory: ["culture"], tier: "niche" },
+                { name: "Broadway", victory: ["culture"], tier: "good" },
+                { name: "Cristo Redentor", victory: ["culture", "religion"], tier: "good", requiresAllVictories: true },
+                { name: "Biosphere", victory: ["culture"], tier: "good" },
+                { name: "Sydney Opera House", victory: ["culture"], tier: "good" },
+                { name: "Estadio de Maracana", victory: ["all"], tier: "good" },
+                { name: "Amundsen-Scott Research Station", victory: ["science"], tier: "good" }
+            ];
+
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener("change", updateWonders);
+            });
+
+            // Initial rendering on page load
+            updateWonders();
+
+            function updateWonders() {
+                const selectedVictories = Array.from(checkboxes)
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => checkbox.id.replace("Checkbox", ""));
+
+                renderWonders(selectedVictories);
+            }
+
+            // Define tier explanations outside the function
+            const tierExplanations = {
+                "best": "These wonders are among the best in the game and you should aim to build these in every single one of your games.",
+                "good": "Most wonders in the game are worth building, though they are generally geared towards specific victory conditions.",
+                "niche": "These are generally not very good, though they can serve a specific purpose in very specific situations.",
+                "not worth": "These wonders should really be avoided, unless you have absolutely nothing else to build. The wonders in this tier offer very little for the amount of production it costs to build these wonders."
+            };
+
+
+            function renderWonders(selectedVictories) {
+                wondersList.innerHTML = "";
+
+                // Define the custom tier order
+                const tierOrder = { "best": 1, "good": 2, "niche": 3, "not worth": 4 };
+
+                // Sort wonders based on the custom tier order
+                wonders.sort((a, b) => tierOrder[a.tier] - tierOrder[b.tier]);
+
+                wonders.forEach((wonder, index) => {
+                    const wonderElement = document.createElement("div");
+                    wonderElement.classList.add("wonder");
+
+                    // Check if all of the selected victories match the wonder's victories
+const allVictoriesMatch = wonder.requiresAllVictories
+    ? wonder.victory.every(victory => selectedVictories.includes(victory))
+    : selectedVictories.some(victory => wonder.victory.includes(victory));
+
+// Check if the wonder is good for any victory type
+const isVersatile = wonder.victory.includes("all");
+
+// Check if at least one selected victory matches any of the wonder's victory conditions
+const victoryMatch = isVersatile || allVictoriesMatch;
+
+
+                    if (victoryMatch) {
+                        if (isVersatile) {
+                            wonderElement.style.backgroundColor = "yellow"; // Highlight in yellow for versatile wonders
+                        } else {
+                            wonderElement.style.backgroundColor = "lightgreen"; // Highlight for other matching wonders
+                        }
+                    } else {
+                        wonderElement.style.backgroundColor = "lightgray"; // Dim for non-matching wonders
+                    }
+
+
+                    wonderElement.textContent = wonder.name; // Display only the wonder name
+
+                    wondersList.appendChild(wonderElement);
+
+                    // Add a horizontal line after each tier group except for the last one
+                    if (index < wonders.length - 1 && wonder.tier !== wonders[index + 1].tier) {
+                        const lineElement = document.createElement("hr");
+                        wondersList.appendChild(lineElement);
+                    }
+                });
+            }
+
+
+
+        });
+    </script>
+</body>
+
+</html>
