@@ -27,8 +27,7 @@
 </head>
 
 <body>
-    <a href="C:\Users\natha\OneDrive\Desktop\Capstone Project\.vscode\testWonders.html">World Wonders</a>
-
+    <a href=".vscode\testWonders.html">World Wonders</a>
     <div class="victory-conditions">
         <label>
             <input type="checkbox" id="dominationCheckbox"> Domination
@@ -56,14 +55,57 @@
             const checkboxes = document.querySelectorAll("input[type=checkbox]");
             const civilizationsList = document.getElementById("civilizationsList");
 
-            // List of all civilizations
-            const civilizations = [
-                { name: "America", victory: ["culture", "domination", "diplomacy"] },
-                { name: "Arabia", victory: ["religion", "science"] },
-                { name: "Australia", victory: ["science"]},
-                { name: "Aztec", victory: ["domination"] },
-                { name: "Babylon", victory: ["domination"]},
-                { name: "Brazil", victory: ["culture", "domination", "religion", "science"] },
+            const civilizationsData = [
+                { name: "America", victories: ["culture", "domination", "science", "diplomacy"] },
+                { name: "Arabia", victories: ["religion", "domination", "science"] },
+                { name: "Australia", victories: ["domination", "science"] },
+                { name: "Aztec", victories: ["domination"] },
+                { name: "Babylon", victories: ["domination", "science", "culture"] },
+                { name: "Brazil", victories: ["domination", "science", "culture", "religion"] },
+                { name: "Byzantine", victories: ["domination", "religion"] },
+                { name: "Canada", victories: ["culture", "diplomacy"] },
+                { name: "China", victories: ["domination", "culture", "science"] },
+                { name: "Cree", victories: ["diplomacy"] },
+                { name: "Egypt", victories: ["culture", "religion", "diplomacy"] },
+                { name: "England", victories: ["domination", "culture", "science"] },
+                { name: "Ethiopia", victories: ["religion", "culture"] },
+                { name: "France", victories: ["domination", "culture"] },
+                { name: "Gaul", victories: ["domination"] },
+                { name: "Georgia", victories: ["religion", "diplomacy"] },
+                { name: "Germany", victories: ["domination", "science", "culture"] },
+                { name: "Gran Colombia", victories: ["domination"] },
+                { name: "Greece", victories: ["domination", "culture", "diplomacy"] },
+                { name: "Hungary", victories: ["domination", "diplomacy"] },
+                { name: "Inca", victories: ["science", "religion"] },
+                { name: "India", victories: ["religion", "domination"] },
+                { name: "Indonesia", victories: ["domination", "science", "culture", "religion"] },
+                { name: "Japan", victories: ["domination", "culture", "science", "religion"] },
+                { name: "Khmer", victories: ["religion", "culture"] },
+                { name: "Kongo", victories: ["culture"] },
+                { name: "Korea", victories: ["science"] },
+                { name: "Macedon", victories: ["domination", "science"] },
+                { name: "Mali", victories: ["religion", "diplomacy"] },
+                { name: "Maori", victories: ["religion", "culture"] },
+                { name: "Mapuche", victories: ["domination", "culture"] },
+                { name: "Maya", victories: ["science"] },
+                { name: "Mongolia", victories: ["domination"] },
+                { name: "Netherlands", victories: ["science", "culture"] },
+                { name: "Norway", victories: ["domination"] },
+                { name: "Nubia", victories: ["domination"] },
+                { name: "Ottomans", victories: ["domination"] },
+                { name: "Persia", victories: ["domination", "culture"] },
+                { name: "Phoenicia", victories: ["domination"] },
+                { name: "Poland", victories: ["domination", "religion", "culture"] },
+                { name: "Portugal", victories: ["science", "diplomacy"] },
+                { name: "Rome", victories: ["domination"] },
+                { name: "Russia", victories: ["religion", "culture"] },
+                { name: "Scotland", victories: ["science"] },
+                { name: "Scythia", victories: ["domination"] },
+                { name: "Spain", victories: ["domination", "religion", "science"] },
+                { name: "Sumeria", victories: ["domination", "science"] },
+                { name: "Sweden", victories: ["culture", "diplomacy"] },
+                { name: "Vietnam", victories: ["domination", "culture"] },
+                { name: "Zulu", victories: ["domination"] }
             ];
 
             checkboxes.forEach(checkbox => {
@@ -84,17 +126,20 @@
             function renderCivilizations(selectedVictories) {
                 civilizationsList.innerHTML = "";
 
-                civilizations.forEach(civilization => {
+                civilizationsData.forEach(civilization => {
                     const civilizationElement = document.createElement("div");
                     civilizationElement.classList.add("civilization");
 
-                    // Check if civilization has victory conditions defined and at least one of them matches any of the selected victories
-                    const victoryMatch = civilization.victory && civilization.victory.some(victory => selectedVictories.includes(victory));
+                    const totalVictories = civilization.victories.length;
+                    const selectedRatio = selectedVictories.filter(victory => civilization.victories.includes(victory)).length / totalVictories;
 
-                    if (victoryMatch) {
-                        civilizationElement.style.backgroundColor = "lightgreen"; // Highlight for matching civilizations
+                    // Adjust the brightness based on the ratio
+                    const brightness = 30 + (selectedRatio * 70); // Adjust the multiplication factor as needed
+
+                    if (selectedRatio === 1 && civilization.victories.length === selectedVictories.length) {
+                        civilizationElement.style.backgroundColor = "yellow"; // Set to yellow if all conditions are exactly met
                     } else {
-                        civilizationElement.style.backgroundColor = "lightgray"; // Dim for non-matching civilizations
+                        civilizationElement.style.backgroundColor = `rgb(${brightness}%, ${brightness}%, ${brightness}%)`; // Adjusted brightness in grey
                     }
 
                     civilizationElement.textContent = civilization.name; // Display only the civilization name
