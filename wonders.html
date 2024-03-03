@@ -5,314 +5,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wonders - Civilization VI Helper</title>
-
-    <style>
-        img {
-            max-width: 100%;
-            /* Ensure the image does not exceed its container width */
-            height: auto;
-            /* Maintain aspect ratio */
-            transition: filter 0.3s;
-            /* Add a transition for a smooth effect */
-            width: 100px;
-        }
-
-        .lit-up {
-            filter: brightness(125%);
-            /* Adjust the brightness value as needed */
-        }
-
-        .dimmed {
-            filter: brightness(50%);
-            /* Adjust the brightness value as needed */
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-
-        .victory-conditions {
-            margin-bottom: 20px;
-        }
-
-        .wonder {
-            border: 1px solid #ddd;
-            padding: 10px;
-            margin: 5px;
-            display: inline-block;
-            cursor: pointer;
-        }
-
-        /* Hide default checkboxes */
-        .victory-conditions input[type="checkbox"] {
-            display: none;
-        }
-
-        /* Style the custom checkboxes using labels */
-        .checkbox-label {
-            display: inline-block;
-            width: 50px;
-            /* Set the width and height according to your image size */
-            height: 50px;
-            background-size: cover;
-            cursor: pointer;
-            margin-right: 10px;
-            transition: filter 0.3s;
-            /* Add a smooth transition effect */
-        }
-
-        #dominationLabel {
-            text-align: center;
-            color: #333;
-            /* Adjust color as needed */
-            font-size: 14px;
-            /* Adjust font size as needed */
-            margin-top: 5px;
-            /* Adjust spacing as needed */
-        }
-
-        /* Define styles for each checkbox state */
-        #dominationCheckbox:checked+.checkbox-label {
-            background-image: url("C:/Users/natha/OneDrive/Desktop/Capstone Project/Images/Victory Type Images/Domination_Victory_29.webp");
-            filter: brightness(120%);
-            /* Adjust brightness for checked state */
-        }
-
-
-        #dominationCheckbox:not(:checked)+.checkbox-label {
-            background-image: url("C:/Users/natha/OneDrive/Desktop/Capstone Project/Images/Victory Type Images/Domination_Victory_29.webp");
-            filter: brightness(70%);
-            /* Adjust brightness for unchecked state */
-        }
-
-        #cultureCheckbox:checked+.checkbox-label {
-            background-image: url("C:/Users/natha/OneDrive/Desktop/Capstone Project/Images/Victory Type Images/Culture_Victory_29.webp");
-            filter: brightness(120%);
-        }
-
-        #cultureCheckbox:not(:checked)+.checkbox-label {
-            background-image: url("C:/Users/natha/OneDrive/Desktop/Capstone Project/Images/Victory Type Images/Culture_Victory_29.webp");
-            filter: brightness(70%);
-        }
-
-        #scienceCheckbox:checked+.checkbox-label {
-            background-image: url("C:/Users/natha/OneDrive/Desktop/Capstone Project/Images/Victory Type Images/Science_Victory_29.webp");
-            filter: brightness(120%);
-        }
-
-        #scienceCheckbox:not(:checked)+.checkbox-label {
-            background-image: url("C:/Users/natha/OneDrive/Desktop/Capstone Project/Images/Victory Type Images/Science_Victory_29.webp");
-            filter: brightness(70%);
-        }
-
-        #religionCheckbox:checked+.checkbox-label {
-            background-image: url("C:/Users/natha/OneDrive/Desktop/Capstone Project/Images/Victory Type Images/Religious_Victory_29.webp");
-            filter: brightness(120%);
-        }
-
-        #religionCheckbox:not(:checked)+.checkbox-label {
-            background-image: url("C:/Users/natha/OneDrive/Desktop/Capstone Project/Images/Victory Type Images/Religious_Victory_29.webp");
-            filter: brightness(70%);
-        }
-
-        #diplomacyCheckbox:checked+.checkbox-label {
-            background-image: url("C:/Users/natha/OneDrive/Desktop/Capstone Project/Images/Victory Type Images/Diplomatic_Victory_29.webp");
-            filter: brightness(120%);
-        }
-
-        #diplomacyCheckbox:not(:checked)+.checkbox-label {
-            background-image: url("C:/Users/natha/OneDrive/Desktop/Capstone Project/Images/Victory Type Images/Diplomatic_Victory_29.webp");
-            filter: brightness(70%);
-        }
-
-
-
-        .civilization {
-            border: 1px solid #ddd;
-            padding: 10px;
-            margin: 5px;
-            display: inline-block;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
-    <a href="C:\Users\natha\OneDrive\Desktop\Capstone Project\.vscode\civilizations.html">Civilizations</a>
-    <p>If a wonder stays highlighted regardless of which victory condition you select, that means that that wonder is versatile and is good for any victory
+<body class="wonders-page">
+    <a href="C:\Users\natha\OneDrive\Desktop\Capstone Project\civilizations.html">Civilizations</a>
+    <p>If a wonder stays highlighted regardless of which victory condition you select, that means that that wonder is
+        versatile and is good for any victory
         condition that you are trying to achieve.</p>
 
+    <!-- Victory types-->    
     <div class="victory-conditions">
-        <label>
+        <label for="dominationCheckbox" class="checkbox-label">
             <input type="checkbox" id="dominationCheckbox">
-            <div class="checkbox-label"></div> Domination
+            <img src="C:/Users/natha/OneDrive/Desktop/Capstone Project/Images/Victory Type Images/Domination_Victory_29.webp"
+                alt="Domination">
         </label>
-        <label>
+        <label for="scienceCheckbox" class="checkbox-label">
             <input type="checkbox" id="scienceCheckbox">
-            <div class="checkbox-label"></div> Science
+            <img src="C:/Users/natha/OneDrive/Desktop/Capstone Project/Images/Victory Type Images/Science_Victory_29.webp"
+                alt="Science">
         </label>
-        <label>
+        <label for="cultureCheckbox" class="checkbox-label">
             <input type="checkbox" id="cultureCheckbox">
-            <div class="checkbox-label"></div> Culture
+            <img src="C:/Users/natha/OneDrive/Desktop/Capstone Project/Images/Victory Type Images/Culture_Victory_29.webp"
+                alt="Culture">
         </label>
-        <label>
+        <label for="religionCheckbox" class="checkbox-label">
             <input type="checkbox" id="religionCheckbox">
-            <div class="checkbox-label"></div> Religion
+            <img src="C:/Users/natha/OneDrive/Desktop/Capstone Project/Images/Victory Type Images/Religious_Victory_29.webp"
+                alt="Religion">
         </label>
-        <label>
+        <label for="diplomacyCheckbox" class="checkbox-label">
             <input type="checkbox" id="diplomacyCheckbox">
-            <div class="checkbox-label"></div> Diplomacy
+            <img src="C:/Users/natha/OneDrive/Desktop/Capstone Project/Images/Victory Type Images/Diplomatic_Victory_29.webp"
+                alt="Diplomacy">
         </label>
     </div>
 
     <div class="wonders" id="wondersList">
         <!-- World wonders will be dynamically added here -->
     </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Define tier explanations outside the function
-            const tierExplanations = {
-                "best": "These wonders are among the best in the game and you should aim to build these in every single one of your games.",
-                "good": "Most wonders in the game are worth building, though they are generally geared towards specific victory conditions.",
-                "niche": "These are generally not very good, though they can serve a purpose in very specific situations.",
-                "not worth": "These wonders should really be avoided, unless you have absolutely nothing else to build. The wonders in this tier offer very little for the amount of production it costs to build these wonders."
-            };
-
-            const checkboxes = document.querySelectorAll("input[type=checkbox]");
-            const wondersList = document.getElementById("wondersList");
-
-            //List of all wonders
-            const wonders = [
-                { name: "Great Bath", victory: ["all"], tier: "good" },
-                { name: "Hanging Gardens", victory: ["all"], tier: "not worth" },
-                { name: "Stonehenge", victory: ["religion"], tier: "good" },
-                { name: "Temple of Artemis", victory: ["all"], tier: "best" },
-                { name: "Etemenanki", victory: ["science"], tier: "good" },
-                { name: "Oracle", victory: ["all"], tier: "good" },
-                { name: "Pyramids", victory: ["all"], tier: "good" },
-                { name: "Apadana", victory: ["culture", "diplomacy"], tier: "good" },
-                { name: "Colosseum", victory: ["all"], tier: "best" },
-                { name: "Great Lighthouse", victory: ["domination"], tier: "niche" },
-                { name: "Jebel Barkal", victory: ["domination", "culture", "religion"], tier: "good", requiresAllVictories: true },
-                { name: "Mahabodhi Temple", victory: ["religion", "diplomacy"], tier: "good", requiresAllVictories: true },
-                { name: "Statue of Zeus", victory: ["domination"], tier: "good" },
-                { name: "Great Library", victory: ["culture", "science"], tier: "good" },
-                { name: "Mausoleum at Halicarnassus", victory: ["science", "culture"], tier: "good" },
-                { name: "Colossus", victory: ["all"], tier: "good" },
-                { name: "Machu Picchu", victory: ["science", "culture", "diplomacy"], tier: "good" },
-                { name: "Petra", victory: ["all"], tier: "good" },
-                { name: "Terracotta Army", victory: ["domination", "culture"], tier: "good", requiresAllVictories: true },
-                { name: "Hagia Sophia", victory: ["religion"], tier: "good" },
-                { name: "Huey Teocalli", victory: ["all"], tier: "good" },
-                { name: "Kilwa Kisiwani", victory: ["all"], tier: "best" },
-                { name: "Meenakshi Temple", victory: ["religion"], tier: "niche" },
-                { name: "Kotoku-in", victory: ["religion", "domination"], tier: "not worth", requiresAllVictories: true },
-                { name: "Mont St. Michel", victory: ["culture", "religion"], tier: "good", requiresAllVictories: true },
-                { name: "Alhambra", victory: ["domination"], tier: "good" },
-                { name: "University of Sankore", victory: ["science", "religion"], tier: "good", requiresAllVictories: true },
-                { name: "Angkor Wat", victory: ["all"], tier: "not worth" },
-                { name: "Chichen Itza", victory: ["culture"], tier: "good" },
-                { name: "St. Basil's Cathedral", victory: ["religion", "culture"], tier: "good", requiresAllVictories: true },
-                { name: "Casa de Contratacion", victory: ["all"], tier: "good" },
-                { name: "Forbidden City", victory: ["all"], tier: "best" },
-                { name: "Great Zimbabwe", victory: ["all"], tier: "good" },
-                { name: "Taj Mahal", victory: ["all"], tier: "good" },
-                { name: "Venetian Arsenal", victory: ["domination"], tier: "niche" },
-                { name: "Torre de Belem", victory: ["all"], tier: "good" },
-                { name: "Potala Palace", victory: ["diplomacy"], tier: "good" },
-                { name: "Bolshoi Theatre", victory: ["culture"], tier: "good" },
-                { name: "Oxford University", victory: ["science"], tier: "good" },
-                { name: "Ruhr Valley", victory: ["domination", "science", "culture"], tier: "good" },
-                { name: "Statue of Liberty", victory: ["diplomacy"], tier: "good" },
-                { name: "Hermitage", victory: ["culture"], tier: "good" },
-                { name: "Orszaghaz", victory: ["diplomacy"], tier: "good" },
-                { name: "Panama Canal", victory: ["all"], tier: "niche" },
-                { name: "Big Ben", victory: ["all"], tier: "good" },
-                { name: "Eiffel Tower", victory: ["culture"], tier: "good" },
-                { name: "Golden Gate Bridge", victory: ["culture"], tier: "niche" },
-                { name: "Broadway", victory: ["culture"], tier: "good" },
-                { name: "Cristo Redentor", victory: ["culture", "religion"], tier: "good", requiresAllVictories: true },
-                { name: "Biosphere", victory: ["culture"], tier: "good" },
-                { name: "Sydney Opera House", victory: ["culture"], tier: "good" },
-                { name: "Estadio de Maracana", victory: ["all"], tier: "good" },
-                { name: "Amundsen-Scott Research Station", victory: ["science"], tier: "good" }
-            ];
-
-            checkboxes.forEach(checkbox => {
-                checkbox.addEventListener("change", updateWonders);
-            });
-
-            // Initial rendering on page load
-            preloadImages();
-
-            function preloadImages() {
-                wonders.forEach(wonder => {
-                    const img = new Image();
-                    img.onload = function () {
-                        // Once the image is loaded, render the wonders
-                        updateWonders();
-                    };
-                    img.src = `C:/Users/natha/OneDrive/Desktop/Capstone Project/Images/World Wonder Images/${wonder.name}.webp`;
-                });
-            }
-
-            function updateWonders() {
-                const selectedVictories = Array.from(checkboxes)
-                    .filter(checkbox => checkbox.checked)
-                    .map(checkbox => checkbox.id.replace("Checkbox", ""));
-
-                renderWonders(selectedVictories);
-            }
-
-
-            function renderWonders(selectedVictories) {
-                wondersList.innerHTML = "";
-
-                // Define the custom tier order
-                const tierOrder = { "best": 1, "good": 2, "niche": 3, "not worth": 4 };
-
-                // Sort wonders based on the custom tier order
-                wonders.sort((a, b) => tierOrder[a.tier] - tierOrder[b.tier]);
-
-                wonders.forEach((wonder, index) => {
-                    // Display tier explanation at the beginning of each tier
-                    if (index === 0 || wonder.tier !== wonders[index - 1].tier) {
-                        const tierExplanation = document.createElement("div");
-                        tierExplanation.textContent = tierExplanations[wonder.tier];
-                        wondersList.appendChild(tierExplanation);
-                    }
-
-                    // Create image element and set its attributes
-                    const wonderImage = new Image();
-                    wonderImage.src = `C:/Users/natha/OneDrive/Desktop/Capstone Project/Images/World Wonder Images/${wonder.name}.webp`;
-                    wonderImage.alt = wonder.name;
-
-                    // Check if all of the selected victories match the wonder's victories
-                    const allVictoriesMatch = wonder.requiresAllVictories
-                        ? wonder.victory.every(victory => selectedVictories.includes(victory))
-                        : selectedVictories.some(victory => wonder.victory.includes(victory));
-
-                    // Check if the wonder is good for any victory type
-                    const isVersatile = wonder.victory.includes("all");
-
-                    // Check if at least one selected victory matches any of the wonder's victory conditions
-                    const victoryMatch = isVersatile || allVictoriesMatch;
-
-                    if (victoryMatch) {
-                        wonderImage.classList.add("lit-up");
-                    } else {
-                        wonderImage.classList.add("dimmed");
-                    }
-
-                    wondersList.appendChild(wonderImage);
-                });
-            }
-
-
-        });
-    </script>
+<script src="wondersScript.js"></script>
 </body>
-
 </html>
