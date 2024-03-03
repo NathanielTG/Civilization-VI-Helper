@@ -114,6 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // Display tier explanation at the beginning of each tier
                 const tierExplanation = document.createElement("div");
+                tierExplanation.classList.add("tier-description"); // Add a class for styling
                 tierExplanation.textContent = tierExplanations[wonder.tier];
                 currentTierContainer.appendChild(tierExplanation);
 
