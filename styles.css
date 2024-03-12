@@ -1,3 +1,8 @@
+/**********************************/
+/*******LINKS TO OTHER PAGES*******/
+/**********************************/
+
+
 .link-text {
     text-align: left;
     font-size: 30px;
@@ -23,16 +28,17 @@ p {
     margin: 24px 0px;
 }
 
-
-
 body {
     background-color: rgb(0, 0, 42);
     color: white;
     font-family: Arial, sans-serif;
     margin: 56px;
-    font-weight: bold;
     font-size: 14px;
 }
+
+/**********************************/
+/**************WONDERS*************/
+/**********************************/
 
 body.wonders-page {
     display: flex;
@@ -71,15 +77,17 @@ body.wonders-page {
     body {
         font-size: 14px;
     }
+
+    .link-text {
+        font-size: 18px;
+    }
+
 }
 
 img {
     max-width: 100%;
-    /* Ensure the image does not exceed its container width */
     height: auto;
-    /* Maintain aspect ratio */
     transition: filter 0.3s;
-    /* Add a transition for a smooth effect */
     width: 70px;
 }
 
@@ -91,7 +99,7 @@ img {
 /* Add these styles for the tooltip with arrow */
 .tooltip {
     visibility: hidden;
-    background-color: #bcbbbb;
+    background-color: #f6f6f6;
     color: #000000;
     text-align: center;
     padding: 10px;
@@ -101,6 +109,7 @@ img {
     bottom: 100%;
     left: 50%;
     transform: translateX(-50%);
+    opacity: 0.9;
     /* Center the tooltip horizontally */
 }
 
@@ -112,7 +121,7 @@ img {
     margin-left: -10px;
     border-width: 10px;
     border-style: solid;
-    border-color: #bcbbbb transparent transparent transparent;
+    border-color: #f6f6f6 transparent transparent transparent;
 }
 
 .wonder-container:hover .tooltip {
@@ -122,12 +131,10 @@ img {
 /* This is for the wonders. */
 .lit-up {
     filter: brightness(125%);
-    /* Adjust the brightness value as needed */
 }
 
 .dimmed {
-    filter: brightness(25%);
-    /* Adjust the brightness value as needed */
+    filter: brightness(40%);
 }
 
 .victory-conditions {
@@ -149,13 +156,25 @@ img {
     display: none;
 }
 
+#wondersList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+/**********************************/
+/*********CHECKBOX LABELS**********/
+/**********************************/
+
+
 /* Style the custom checkboxes using labels */
 .checkbox-label {
     display: inline-block;
     cursor: pointer;
     margin: 0px 20px;
     transition: filter 0.3s;
-    /* Add a smooth transition effect */
 }
 
 .checkbox-label img {
@@ -164,12 +183,26 @@ img {
     transition: filter 0.3s;
 }
 
-#wondersList {
+/**********************************/
+/*********CIVILIZATIONS************/
+/**********************************/
+
+
+#civilizationsList {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    align-items: flex-start;
-    gap: 10px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+#civilizationsList img {
+    width: 50px;
+    margin: 5px; /* Set the margin to create a gap */
+    object-fit: cover;
+    border-radius: 5px;
+    display: inline-block;
+    border: 2px solid transparent; /* Add transparent border by default */
+    transition: all 0.3s; /* Add a transition for smooth changes */
 }
 
 /* Define styles for each checkbox state */
@@ -181,4 +214,8 @@ img {
 .checkbox-label input:not(:checked)+img {
     filter: brightness(35%);
     /* Adjust brightness for unchecked state */
+}
+
+.civilization img.exact-match {
+    transform: scale(1.5); /* Scale up for emphasis */
 }

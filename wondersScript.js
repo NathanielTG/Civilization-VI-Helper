@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "best": "These wonders are among the best in the game and you should aim to build these in every single one of your games.",
         "good": "Most wonders in the game are worth building, though they are generally geared either towards specific victory conditions, or specific scenarios in which the wonder will give useful benefits.",
         "niche": "These wonders are generally not very good, though they can serve a purpose in very specific situations.",
-        "not worth": "These wonders should really be avoided, unless you have absolutely nothing else to build. The wonders in this tier offer very little for the amount of production it costs to build these wonders."
+        "not worth": "These wonders should really be avoided, unless you have absolutely nothing else to build. The wonders in this tier offer very little for the amount of production it costs to build them."
     };
 
     const checkboxes = document.querySelectorAll("input[type=checkbox]");
@@ -124,7 +124,6 @@ document.addEventListener("DOMContentLoaded", function () {
             // Create container for wonder and tooltip
             const wonderContainer = document.createElement("div");
             wonderContainer.classList.add("wonder-container");
-
 
             // Create image element and set its attributes
             const wonderImage = new Image();
