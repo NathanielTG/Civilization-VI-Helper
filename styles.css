@@ -2,7 +2,6 @@
 /*******LINKS TO OTHER PAGES*******/
 /**********************************/
 
-
 .link-text {
     text-align: left;
     font-size: 30px;
@@ -19,10 +18,9 @@
     transition: 0.3s;
 }
 
-/* Active link styles (when clicked) */
-a:active {
-    color: #8b0000;
-}
+/**********************************/
+/************MAIN BODY*************/
+/**********************************/
 
 p {
     margin: 24px 0px;
@@ -60,6 +58,11 @@ body.wonders-page {
     .main-content {
         margin: 0px 262px;
     }
+
+    .civilization img {
+        width: 50px;
+    }
+
 }
 
 /* Media query to make images smaller for smaller screens*/
@@ -80,6 +83,10 @@ body.wonders-page {
 
     .link-text {
         font-size: 18px;
+    }
+
+    .civilization img {
+        width: 36px;
     }
 
 }
@@ -138,7 +145,7 @@ img {
 }
 
 .victory-conditions {
-    margin-bottom: 20px;
+    margin: 42px 0px;
     display: flex;
     justify-content: center;
 }
@@ -183,28 +190,6 @@ img {
     transition: filter 0.3s;
 }
 
-/**********************************/
-/*********CIVILIZATIONS************/
-/**********************************/
-
-
-#civilizationsList {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-#civilizationsList img {
-    width: 50px;
-    margin: 5px; /* Set the margin to create a gap */
-    object-fit: cover;
-    border-radius: 5px;
-    display: inline-block;
-    border: 2px solid transparent; /* Add transparent border by default */
-    transition: all 0.3s; /* Add a transition for smooth changes */
-}
-
 /* Define styles for each checkbox state */
 .checkbox-label input:checked+img {
     filter: brightness(120%);
@@ -216,6 +201,86 @@ img {
     /* Adjust brightness for unchecked state */
 }
 
+/**********************************/
+/*********CIVILIZATIONS************/
+/**********************************/
+
+/**********************************/
+/* Grid of Civs */
+/**********************************/
+
+#civilizationsList {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    position: relative;
+}
+
+#civilizationsList img {
+    margin: 5px; /* Set the margin to create a gap */
+    object-fit: cover;
+    border-radius: 5px;
+    display: inline-block;
+    border: 2px solid transparent; /* Add transparent border by default */
+    transition: all 0.3s; /* Add a transition for smooth changes */
+    position: relative;
+}
+
+/**********************************/
+/* If the exact victory types are matched */
+/**********************************/
+
 .civilization img.exact-match {
     transform: scale(1.5); /* Scale up for emphasis */
 }
+
+/* This is for the civilizations. */
+#civilizationsList .exact-match {
+    border: 2px solid yellow;
+}
+
+/**********************************/
+/*Displaying civ names when hovered*/
+/**********************************/
+
+/* Add these styles for the tooltip with arrow on the civilizations page */
+
+.civilization {
+    position: relative;
+}
+
+.civilization img:hover + .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.civilization .tooltip {
+    visibility: hidden;
+    background-color: #f6f6f6;
+    color: #000000;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.9;
+    /* Center the tooltip horizontally */
+}
+
+.civilization .tooltip:after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -10px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: #f6f6f6 transparent transparent transparent;
+}
+
+
+

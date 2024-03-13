@@ -88,6 +88,10 @@ document.addEventListener("DOMContentLoaded", function () {
             const civilizationElement = document.createElement("div");
             civilizationElement.classList.add("civilization");
     
+            // Create container for wonder and tooltip
+            const civContainer = document.createElement("div");
+            civContainer.classList.add("civ-container");
+
             // Create image element and set its attributes
             const civilizationImage = new Image();
             civilizationImage.src = `C:/Users/natha/OneDrive/Desktop/Capstone Project/Images/Civ Images/${civilization.name}.webp`;
@@ -108,10 +112,16 @@ document.addEventListener("DOMContentLoaded", function () {
     
                 civilizationImage.style.filter = `brightness(${brightness}%)`;
             }
-    
+            
+            // Create tooltip element
+            const tooltip = document.createElement("div");
+            tooltip.classList.add("tooltip");
+            tooltip.textContent = civilization.name;
+
             // Append image element to civilization element
             civilizationElement.appendChild(civilizationImage);
-    
+            civilizationElement.appendChild(tooltip);
+
             civilizationsList.appendChild(civilizationElement);
         });
     }
