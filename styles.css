@@ -250,7 +250,8 @@ img {
     position: relative;
 }
 
-.civilization img:hover + .tooltip {
+.civilization img:hover + .tooltip,
+.civilization .tooltip:hover {
     visibility: visible;
     opacity: 1;
 }
@@ -281,6 +282,10 @@ img {
     border-style: solid;
     border-color: #f6f6f6 transparent transparent transparent;
 }
+
+
+
+
 
 
 
