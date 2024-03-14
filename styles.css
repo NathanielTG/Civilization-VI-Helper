@@ -51,7 +51,7 @@ body.wonders-page {
 /* Media query for larger screens */
 @media (min-width: 1200px) {
     body.wonders-page {
-        margin: 36px;
+        margin: 56px;
         /* Adjust the margin value as needed */
     }
 
@@ -282,10 +282,3 @@ img {
     border-style: solid;
     border-color: #f6f6f6 transparent transparent transparent;
 }
-
-
-
-
-
-
-

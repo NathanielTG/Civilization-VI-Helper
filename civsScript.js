@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
         { name: "Gran Colombia", victories: ["domination"] },
         { name: "Greece", victories: ["domination", "culture", "diplomacy"] },
         { name: "Hungary", victories: ["domination", "diplomacy"] },
-        { name: "Inca", victories: ["science", "religion"] },
+        { name: "Inca", victories: ["science", "religion", "domination", "culture"] },
         { name: "India", victories: ["religion", "domination"] },
         { name: "Indonesia", victories: ["domination", "science", "culture", "religion"] },
         { name: "Japan", victories: ["domination", "culture", "science", "religion"] },
