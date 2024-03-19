@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Once the image is loaded, render the wonders
                 updateWonders();
             };
-            img.src = `C:/Users/natha/OneDrive/Desktop/Capstone Project/Images/World Wonder Images/${wonder.name}.webp`;
+            img.src = `Images/World Wonder Images/${wonder.name}.webp`;
         });
     }
 
@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Create image element and set its attributes
             const wonderImage = new Image();
-            wonderImage.src = `C:/Users/natha/OneDrive/Desktop/Capstone Project/Images/World Wonder Images/${wonder.name}.webp`;
+            wonderImage.src = `Images/World Wonder Images/${wonder.name}.webp`;
             wonderImage.alt = wonder.name;
 
             // Check if all of the selected victories match the wonder's victories

@@ -94,7 +94,6 @@ body.wonders-page {
 img {
     max-width: 100%;
     height: auto;
-    transition: filter 0.3s;
     width: 70px;
 }
 
@@ -223,7 +222,6 @@ img {
     border-radius: 5px;
     display: inline-block;
     border: 2px solid transparent; /* Add transparent border by default */
-    transition: all 0.3s; /* Add a transition for smooth changes */
     position: relative;
 }
 

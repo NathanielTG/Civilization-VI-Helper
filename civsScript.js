@@ -18,11 +18,11 @@ document.addEventListener("DOMContentLoaded", function () {
         { name: "Ethiopia", victories: ["religion", "culture"] },
         { name: "France", victories: ["domination", "culture"] },
         { name: "Gaul", victories: ["domination"] },
-        { name: "Georgia", victories: ["religion", "diplomacy"] },
+        { name: "Georgia", victories: ["religion", "diplomacy", "domination"] },
         { name: "Germany", victories: ["domination", "science", "culture"] },
         { name: "Gran Colombia", victories: ["domination"] },
         { name: "Greece", victories: ["domination", "culture", "diplomacy"] },
-        { name: "Hungary", victories: ["domination", "diplomacy"] },
+        { name: "Hungary", victories: ["domination"] },
         { name: "Inca", victories: ["science", "religion", "domination", "culture"] },
         { name: "India", victories: ["religion", "domination"] },
         { name: "Indonesia", victories: ["domination", "science", "culture", "religion"] },
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
         { name: "Ottomans", victories: ["domination"] },
         { name: "Persia", victories: ["domination", "culture"] },
         { name: "Phoenicia", victories: ["domination"] },
-        { name: "Poland", victories: ["domination", "religion", "culture"] },
+        { name: "Poland", victories: ["religion", "culture"] },
         { name: "Portugal", victories: ["science", "diplomacy"] },
         { name: "Rome", victories: ["domination"] },
         { name: "Russia", victories: ["religion", "culture"] },
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Once the image is loaded, render the civilizations
                 updateCivilizations();
             };
-            img.src = `C:/Users/natha/OneDrive/Desktop/Capstone Project/Images/Civ Images/${civilization.name}.webp`;
+            img.src = `Images/Civ Images/${civilization.name}.webp`;
         });
     }
 
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Create image element and set its attributes
             const civilizationImage = new Image();
-            civilizationImage.src = `C:/Users/natha/OneDrive/Desktop/Capstone Project/Images/Civ Images/${civilization.name}.webp`;
+            civilizationImage.src = `Images/Civ Images/${civilization.name}.webp`;
             civilizationImage.alt = civilization.name;
     
             // Check if the selected victories exactly match the civilization's victories
