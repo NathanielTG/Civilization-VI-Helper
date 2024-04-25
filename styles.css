@@ -219,10 +219,11 @@ img {
 #civilizationsList img {
     margin: 5px; /* Set the margin to create a gap */
     object-fit: cover;
-    border-radius: 5px;
+    border-radius: 35px;
     display: inline-block;
     border: 2px solid transparent; /* Add transparent border by default */
     position: relative;
+    transition: filter 0.3s; /* Add transition property for filter */
 }
 
 /**********************************/
@@ -231,7 +232,9 @@ img {
 
 .civilization img.exact-match {
     transform: scale(1.5); /* Scale up for emphasis */
+    transition: transform 0.3s; /* Add transition property */
 }
+
 
 /* This is for the civilizations. */
 #civilizationsList .exact-match {

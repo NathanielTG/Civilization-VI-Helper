@@ -9,10 +9,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const checkboxes = document.querySelectorAll("input[type=checkbox]");
     const wondersList = document.getElementById("wondersList");
+    const descriptionContainer = document.getElementById("descriptionContainer"); // The container for descriptions
 
     //List of all wonders
     const wonders = [
-        { name: "Great Bath", victory: ["all"], tier: "good" },
+        { name: "Great Bath", victory: ["all"], tier: "good", description: "+3 {housing_icon} Housing. +1 {amenities_icon} Amenity from entertainment. Floodplains tiles along the river containing this wonder are now immune to Flood damage. -50% {production_icon} Production and {food_icon} Food yields from Flood damage. +1 {faith_icon} Faith to the yields of a tile belonging to this city for every time it has been Flooded. Must be built on Floodplains." },
         { name: "Hanging Gardens", victory: ["all"], tier: "not worth" },
         { name: "Stonehenge", victory: ["religion"], tier: "good" },
         { name: "Temple of Artemis", victory: ["all"], tier: "best" },
@@ -96,75 +97,88 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function renderWonders(selectedVictories) {
         wondersList.innerHTML = "";
-
+    
         // Define the custom tier order
         const tierOrder = { "best": 1, "good": 2, "niche": 3, "not worth": 4 };
-
+    
         // Sort wonders based on the custom tier order
         wonders.sort((a, b) => tierOrder[a.tier] - tierOrder[b.tier]);
-
+    
         let currentTierContainer; // Variable to keep track of the current tier container
-
+    
         wonders.forEach((wonder, index) => {
             // Display tier explanation at the beginning of each tier
             if (index === 0 || wonder.tier !== wonders[index - 1].tier) {
                 // Create a new container for the current tier
                 currentTierContainer = document.createElement("div");
                 currentTierContainer.classList.add("tier-container");
-
+    
                 // Display tier explanation at the beginning of each tier
                 const tierExplanation = document.createElement("div");
-                tierExplanation.classList.add("tier-description"); // Add a class for styling
+                tierExplanation.classList.add("tier-description");
                 tierExplanation.textContent = tierExplanations[wonder.tier];
                 currentTierContainer.appendChild(tierExplanation);
-
+    
                 wondersList.appendChild(currentTierContainer);
             }
-
+    
             // Create container for wonder and tooltip
             const wonderContainer = document.createElement("div");
             wonderContainer.classList.add("wonder-container");
-
+    
             // Create image element and set its attributes
             const wonderImage = new Image();
             wonderImage.src = `Images/World Wonder Images/${wonder.name}.webp`;
             wonderImage.alt = wonder.name;
-
+    
             // Check if all of the selected victories match the wonder's victories
             const allVictoriesMatch = wonder.requiresAllVictories
                 ? wonder.victory.every(victory => selectedVictories.includes(victory))
                 : selectedVictories.some(victory => wonder.victory.includes(victory));
-
+    
             // Check if the wonder is good for any victory type
             const isVersatile = wonder.victory.includes("all");
-
+    
             // Check if at least one selected victory matches any of the wonder's victory conditions
             const victoryMatch = isVersatile || allVictoriesMatch;
-
+    
             if (victoryMatch) {
                 wonderImage.classList.add("lit-up");
             } else {
                 wonderImage.classList.add("dimmed");
             }
-
-            wondersList.appendChild(wonderImage);
-
-            // Create tooltip element
+    
+            // Create tooltip element and include the wonder's name
             const tooltip = document.createElement("div");
             tooltip.classList.add("tooltip");
-            tooltip.textContent = wonder.name;
-
+            tooltip.textContent = wonder.name; // Keep the wonder's name in the tooltip
+    
             // Append elements to wonder container
             wonderContainer.appendChild(wonderImage);
             wonderContainer.appendChild(tooltip);
-
-            // Append wonder container to wonders list
-            wondersList.appendChild(wonderContainer);
-
+    
+            // Add click event listener to the image to display description
+            wonderImage.addEventListener("click", function() {
+                // Display the description of the clicked wonder in the description container
+                descriptionContainer.innerHTML = wonder.description || "No description available.";
+                
+                // Replace placeholders with HTML for icons
+                if (wonder.description) {
+                    let descriptionWithIcons = wonder.description
+                        .replace("{housing_icon}", "<img src='Images/Icon Images/Housing.webp' alt='Housing icon' style='width:16px;height:16px;'>")
+                        .replace("{production_icon}", "<img src='Images/Icon Images/Production.webp' alt='Production icon' style='width:16px;height:16px;'>")
+                        .replace("{amenities_icon}", "<img src='Images/Icon Images/Amenities.webp' alt='Amenities icon' style='width:16px;height:16px;'>")
+                        .replace("{food_icon}", "<img src='Images/Icon Images/Food.webp' alt='Food icon' style='width:16px;height:16px;'>")
+                        .replace("{faith_icon}", "<img src='Images/Icon Images/Faith.webp' alt='Faith icon' style='width:16px;height:16px;'>");
+                    
+                    descriptionContainer.innerHTML = descriptionWithIcons;
+                } else {
+                    descriptionContainer.textContent = wonder.name;
+                }
+            });
+    
             // Append wonder container to tier container
             currentTierContainer.appendChild(wonderContainer);
         });
     }
-
-
 });
