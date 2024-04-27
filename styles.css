@@ -14,8 +14,8 @@
 
 /* Hovered link styles */
 .link-text a:hover {
-    color: #c3ff00;
-    transition: 0.3s;
+    color: #ffff00;
+    transition: 0.3s ease-in-out;
 }
 
 /**********************************/
@@ -44,8 +44,56 @@ body.wonders-page {
     text-align: center;
 }
 
+/* Change the cursor to a pointer when hovering over the wonder images */
+.wonder-container img {
+    cursor: pointer; /* This will change the cursor to a pointer icon */
+}
+
+/* Apply yellow highlight when hovering over the wonder images */
+.wonder-container img:hover {
+    filter: brightness(0.9) sepia(1) saturate(10) hue-rotate(25deg);
+}
+
 .tier-description {
     margin: 12px 0px;
+}
+
+/* Main container to hold both the wonders list and the description container */
+.mainContainer {
+    display: flex; /* Use flexbox layout */
+    justify-content: space-between; /* Adjust spacing between wonders list and description container */
+    height: 100%; /* Make sure the main container takes up the full height of the page */
+}
+
+/* Style the wonders list */
+#wondersList {
+    border-radius: 12px;
+    outline: 8px solid #ffffff33;
+    padding: 5px; /* Optional: Add padding for spacing */
+    width: 65%; /* Adjust the width of the wonders list as needed */
+    height: 100%; /* Make sure the wonders list takes up the full height of the parent container */
+    overflow-y: auto; /* Allow scrolling if there are many wonders */
+    padding-right: 10px; /* Add padding to the right side */
+}
+
+/* Style the description container */
+#descriptionContainer {
+    border-radius: 12px;
+    outline: 8px solid #ffffff33;
+    width: 30%; /* Adjust the width as needed */
+    float: right; /* Float the container to the right */
+    padding: 10px; /* Add padding for spacing */
+    background-color: #00002a; /* Set the background color */
+    color: rgb(255, 255, 255); /* Set the text color to white */
+}
+
+/* Media query for larger screens */
+@media (min-width: 1200px) {
+    /* Style the description container */
+    #descriptionContainer {
+        line-height: 1.5; /* Adjust the line height value as needed */
+        font-size: 18px; /* Adjust the font size as needed for larger screens */
+    }
 }
 
 /* Media query for larger screens */
@@ -53,10 +101,6 @@ body.wonders-page {
     body.wonders-page {
         margin: 56px;
         /* Adjust the margin value as needed */
-    }
-
-    .main-content {
-        margin: 0px 262px;
     }
 
     .civilization img {
@@ -102,38 +146,6 @@ img {
     display: inline-block;
 }
 
-/* Add these styles for the tooltip with arrow */
-.tooltip {
-    visibility: hidden;
-    background-color: #f6f6f6;
-    color: #000000;
-    text-align: center;
-    padding: 10px;
-    border-radius: 5px;
-    position: absolute;
-    z-index: 1;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0.9;
-    /* Center the tooltip horizontally */
-}
-
-.tooltip:after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -10px;
-    border-width: 10px;
-    border-style: solid;
-    border-color: #f6f6f6 transparent transparent transparent;
-}
-
-.wonder-container:hover .tooltip {
-    visibility: visible;
-}
-
 /* This is for the wonders. */
 .lit-up {
     filter: brightness(125%);
@@ -170,10 +182,11 @@ img {
     gap: 10px;
 }
 
-/**********************************/
-/*********CHECKBOX LABELS**********/
-/**********************************/
 
+
+/**********************************/
+/*********VICTORY TYPES**********/
+/**********************************/
 
 /* Style the custom checkboxes using labels */
 .checkbox-label {
@@ -199,6 +212,18 @@ img {
     filter: brightness(35%);
     /* Adjust brightness for unchecked state */
 }
+
+.checkbox-label:hover .tooltip {
+    visibility: visible; /* Show tooltip when hovering over the label */
+    opacity: 1;
+}
+
+.checkbox-label .tooltip {
+    visibility: hidden; /* Hide tooltip by default */
+    /* Additional tooltip styles */
+}
+
+
 
 /**********************************/
 /*********CIVILIZATIONS************/
