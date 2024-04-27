@@ -1,0 +1,1 @@
+Show leader portraits for the civ selection page, not the civ flags

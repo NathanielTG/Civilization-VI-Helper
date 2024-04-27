@@ -1,0 +1,310 @@
+/**********************************/
+/*******LINKS TO OTHER PAGES*******/
+/**********************************/
+
+.link-text {
+    text-align: left;
+    font-size: 30px;
+}
+
+.link-text a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* Hovered link styles */
+.link-text a:hover {
+    color: #ffff00;
+    transition: 0.3s ease-in-out;
+}
+
+/**********************************/
+/************MAIN BODY*************/
+/**********************************/
+
+p {
+    margin: 24px 0px;
+}
+
+body {
+    background-color: rgb(0, 0, 42);
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 56px;
+    font-size: 14px;
+}
+
+/**********************************/
+/**************WONDERS*************/
+/**********************************/
+
+body.wonders-page {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+/* Change the cursor to a pointer when hovering over the wonder images */
+.wonder-container img {
+    cursor: pointer; /* This will change the cursor to a pointer icon */
+}
+
+/* Apply yellow highlight when hovering over the wonder images */
+.wonder-container img:hover {
+    filter: brightness(0.9) sepia(1) saturate(10) hue-rotate(25deg);
+}
+
+.tier-description {
+    margin: 12px 0px;
+}
+
+/* Main container to hold both the wonders list and the description container */
+.mainContainer {
+    display: flex; /* Use flexbox layout */
+    justify-content: space-between; /* Adjust spacing between wonders list and description container */
+    height: 100%; /* Make sure the main container takes up the full height of the page */
+}
+
+/* Style the wonders list */
+#wondersList {
+    border-radius: 12px;
+    outline: 8px solid #ffffff33;
+    padding: 5px; /* Optional: Add padding for spacing */
+    width: 65%; /* Adjust the width of the wonders list as needed */
+    height: 100%; /* Make sure the wonders list takes up the full height of the parent container */
+    overflow-y: auto; /* Allow scrolling if there are many wonders */
+    padding-right: 10px; /* Add padding to the right side */
+}
+
+/* Style the description container */
+#descriptionContainer {
+    border-radius: 12px;
+    outline: 8px solid #ffffff33;
+    width: 30%; /* Adjust the width as needed */
+    float: right; /* Float the container to the right */
+    padding: 10px; /* Add padding for spacing */
+    background-color: #00002a; /* Set the background color */
+    color: rgb(255, 255, 255); /* Set the text color to white */
+}
+
+/* Media query for larger screens */
+@media (min-width: 1200px) {
+    /* Style the description container */
+    #descriptionContainer {
+        line-height: 1.5; /* Adjust the line height value as needed */
+        font-size: 18px; /* Adjust the font size as needed for larger screens */
+    }
+}
+
+/* Media query for larger screens */
+@media (min-width: 1200px) {
+    body.wonders-page {
+        margin: 56px;
+        /* Adjust the margin value as needed */
+    }
+
+    .civilization img {
+        width: 50px;
+    }
+
+}
+
+/* Media query to make images smaller for smaller screens*/
+@media screen and (max-width: 1110px) {
+    .checkbox-label img {
+        width: 50px;
+        /* Adjust the width for smaller screens */
+    }
+
+    .wonder-container img {
+        width: 50px;
+        /* Adjust the width for smaller screens */
+    }
+
+    body {
+        font-size: 14px;
+    }
+
+    .link-text {
+        font-size: 18px;
+    }
+
+    .civilization img {
+        width: 36px;
+    }
+
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: 70px;
+}
+
+.wonder-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* This is for the wonders. */
+.lit-up {
+    filter: brightness(125%);
+}
+
+.dimmed {
+    filter: brightness(40%);
+}
+
+.victory-conditions {
+    margin: 42px 0px;
+    display: flex;
+    justify-content: center;
+}
+
+.wonder {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 5px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* Hide default checkboxes */
+.victory-conditions input[type="checkbox"] {
+    display: none;
+}
+
+#wondersList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+
+
+/**********************************/
+/*********VICTORY TYPES**********/
+/**********************************/
+
+/* Style the custom checkboxes using labels */
+.checkbox-label {
+    display: inline-block;
+    cursor: pointer;
+    margin: 0px 20px;
+    transition: filter 0.3s;
+}
+
+.checkbox-label img {
+    object-fit: cover;
+    border-radius: 5px;
+    transition: filter 0.3s;
+}
+
+/* Define styles for each checkbox state */
+.checkbox-label input:checked+img {
+    filter: brightness(120%);
+    /* Adjust brightness for checked state */
+}
+
+.checkbox-label input:not(:checked)+img {
+    filter: brightness(35%);
+    /* Adjust brightness for unchecked state */
+}
+
+.checkbox-label:hover .tooltip {
+    visibility: visible; /* Show tooltip when hovering over the label */
+    opacity: 1;
+}
+
+.checkbox-label .tooltip {
+    visibility: hidden; /* Hide tooltip by default */
+    /* Additional tooltip styles */
+}
+
+
+
+/**********************************/
+/*********CIVILIZATIONS************/
+/**********************************/
+
+/**********************************/
+/* Grid of Civs */
+/**********************************/
+
+#civilizationsList {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    position: relative;
+}
+
+#civilizationsList img {
+    margin: 5px; /* Set the margin to create a gap */
+    object-fit: cover;
+    border-radius: 35px;
+    display: inline-block;
+    border: 2px solid transparent; /* Add transparent border by default */
+    position: relative;
+    transition: filter 0.3s; /* Add transition property for filter */
+}
+
+/**********************************/
+/* If the exact victory types are matched */
+/**********************************/
+
+.civilization img.exact-match {
+    transform: scale(1.5); /* Scale up for emphasis */
+    transition: transform 0.3s; /* Add transition property */
+}
+
+
+/* This is for the civilizations. */
+#civilizationsList .exact-match {
+    border: 2px solid yellow;
+}
+
+/**********************************/
+/*Displaying civ names when hovered*/
+/**********************************/
+
+/* Add these styles for the tooltip with arrow on the civilizations page */
+
+.civilization {
+    position: relative;
+}
+
+.civilization img:hover + .tooltip,
+.civilization .tooltip:hover {
+    visibility: visible;
+    opacity: 1;
+}
+
+.civilization .tooltip {
+    visibility: hidden;
+    background-color: #f6f6f6;
+    color: #000000;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.9;
+    /* Center the tooltip horizontally */
+}
+
+.civilization .tooltip:after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -10px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: #f6f6f6 transparent transparent transparent;
+}
