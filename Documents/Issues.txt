@@ -1,4 +1,0 @@
-LOW:
-
-Want to make the linked texts the same spot; fixed positions
-Wonder and civ images are not doing the transitioning effect when highlighting/dimming
