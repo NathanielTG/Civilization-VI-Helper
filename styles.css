@@ -87,6 +87,33 @@ body.wonders-page {
     color: rgb(255, 255, 255); /* Set the text color to white */
 }
 
+/* Style the victory conditions container */
+.victory-conditions-container {
+    margin-top: 10px; /* Adjust the top margin as needed */
+}
+
+/* Style the images within the victory conditions container */
+.victory-conditions-container img {
+    margin: 0px 5px; /* Adjust the right margin as needed to create a gap between images */
+}
+
+.victory-conditions-container img:hover + .tooltip,
+.victory-conditions-container .tooltip:hover {
+    visibility: visible;
+    opacity: 1;
+    position: absolute; /* Ensure the tooltip is positioned absolutely relative to the image */
+    z-index: 1; /* Ensure the tooltip is on top */
+    background-color: #f6f6f6; /* Tooltip background color */
+    color: #000; /* Tooltip text color */
+    padding: 5px; /* Add some padding */
+    border-radius: 5px; /* Add rounded corners */
+    top: 100%; /* Position tooltip below the image */
+    left: 50%; /* Center tooltip horizontally */
+    transform: translateX(-50%); /* Adjust position */
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+
 /* Media query for larger screens */
 @media (min-width: 1200px) {
     /* Style the description container */
@@ -182,8 +209,6 @@ img {
     gap: 10px;
 }
 
-
-
 /**********************************/
 /*********VICTORY TYPES**********/
 /**********************************/
@@ -216,14 +241,13 @@ img {
 .checkbox-label:hover .tooltip {
     visibility: visible; /* Show tooltip when hovering over the label */
     opacity: 1;
+    text-align: center;
 }
 
 .checkbox-label .tooltip {
     visibility: hidden; /* Hide tooltip by default */
     /* Additional tooltip styles */
 }
-
-
 
 /**********************************/
 /*********CIVILIZATIONS************/

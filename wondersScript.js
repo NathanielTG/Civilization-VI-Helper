@@ -11,6 +11,35 @@ document.addEventListener("DOMContentLoaded", function () {
     const wondersList = document.getElementById("wondersList");
     const descriptionContainer = document.getElementById("descriptionContainer"); // The container for descriptions
     
+    // Mapping of victory conditions to images
+    const victoryConditionsMap = {
+        "domination": {
+            src: "Images/Victory Type Images/Domination_Victory_29.webp",
+            alt: "Domination"
+        },
+        "science": {
+            src: "Images/Victory Type Images/Science_Victory_29.webp",
+            alt: "Science"
+        },
+        "culture": {
+            src: "Images/Victory Type Images/Culture_Victory_29.webp",
+            alt: "Culture"
+        },
+        "religion": {
+            src: "Images/Victory Type Images/Religious_Victory_29.webp",
+            alt: "Religion"
+        },
+        "diplomacy": {
+            src: "Images/Victory Type Images/Diplomatic_Victory_29.webp",
+            alt: "Diplomacy"
+        },
+        "all": {
+            src: "", // No image needed for "ALL"
+            alt: "ALL"
+        }
+    };
+    
+    
     //List of all wonders
     const wonders = [
         { name: "Great Bath", victory: ["all"], tier: "good", description: "+3 {housing_icon} Housing and +1 {amenities_icon} Amenity from entertainment. <br> <br> Floodplains tiles along the river containing this wonder are now immune to Flood damage. -50% {production_icon} Production and {food_icon} Food yields from Flood damage. <br> <br> +1 {faith_icon} Faith to the yields of a tile belonging to this city for every time it has been Flooded. <br> <br> Must be built on Floodplains." },
@@ -95,86 +124,85 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     
     
-function renderWonders(selectedVictories) {
-    wondersList.innerHTML = "";
-
-    // Define the custom tier order
-    const tierOrder = { "best": 1, "good": 2, "niche": 3, "not worth": 4 };
-
-    // Sort wonders based on the custom tier order
-    wonders.sort((a, b) => tierOrder[a.tier] - tierOrder[b.tier]);
-
-    let currentTierContainer; // Variable to keep track of the current tier container
-
-    wonders.forEach((wonder, index) => {
-        // Display tier explanation at the beginning of each tier
-        if (index === 0 || wonder.tier !== wonders[index - 1].tier) {
-            // Create a new container for the current tier
-            currentTierContainer = document.createElement("div");
-            currentTierContainer.classList.add("tier-container");
-
+    function renderWonders(selectedVictories) {
+        wondersList.innerHTML = "";
+        
+        // Define the custom tier order
+        const tierOrder = { "best": 1, "good": 2, "niche": 3, "not worth": 4 };
+        
+        // Sort wonders based on the custom tier order
+        wonders.sort((a, b) => tierOrder[a.tier] - tierOrder[b.tier]);
+        
+        let currentTierContainer; // Variable to keep track of the current tier container
+        
+        wonders.forEach((wonder, index) => {
             // Display tier explanation at the beginning of each tier
-            const tierExplanation = document.createElement("div");
-            tierExplanation.classList.add("tier-description");
-            tierExplanation.textContent = tierExplanations[wonder.tier];
-            currentTierContainer.appendChild(tierExplanation);
-
-            wondersList.appendChild(currentTierContainer);
-        }
-
-        // Create a container for the wonder image
-        const wonderContainer = document.createElement("div");
-        wonderContainer.classList.add("wonder-container");
-
-        // Create an image element for the wonder image
-        const wonderImage = new Image();
-        wonderImage.src = `Images/World Wonder Images/${wonder.name}.webp`;
-        wonderImage.alt = wonder.name;
-
-        // Determine if the wonder matches the selected victory conditions
-        const allVictoriesMatch = wonder.requiresAllVictories
+            if (index === 0 || wonder.tier !== wonders[index - 1].tier) {
+                // Create a new container for the current tier
+                currentTierContainer = document.createElement("div");
+                currentTierContainer.classList.add("tier-container");
+                
+                // Display tier explanation at the beginning of each tier
+                const tierExplanation = document.createElement("div");
+                tierExplanation.classList.add("tier-description");
+                tierExplanation.textContent = tierExplanations[wonder.tier];
+                currentTierContainer.appendChild(tierExplanation);
+                
+                wondersList.appendChild(currentTierContainer);
+            }
+            
+            // Create container for the wonder image
+            const wonderContainer = document.createElement("div");
+            wonderContainer.classList.add("wonder-container");
+            
+            // Create an image element for the wonder image
+            const wonderImage = new Image();
+            wonderImage.src = `Images/World Wonder Images/${wonder.name}.webp`;
+            wonderImage.alt = wonder.name;
+            
+            // Determine if the wonder matches the selected victory conditions
+            const allVictoriesMatch = wonder.requiresAllVictories
             ? wonder.victory.every(victory => selectedVictories.includes(victory))
             : selectedVictories.some(victory => wonder.victory.includes(victory));
-
-        const isVersatile = wonder.victory.includes("all");
-
-        // Check if the wonder matches any of the selected victory conditions
-        const victoryMatch = isVersatile || allVictoriesMatch;
-
-        // Apply the appropriate class based on the match result
-        if (victoryMatch) {
-            wonderImage.classList.add("lit-up");
-            wonderImage.classList.remove("dimmed");
-        } else {
-            wonderImage.classList.add("dimmed");
-            wonderImage.classList.remove("lit-up");
-        }
-
-        // Append the image to the container
-        wonderContainer.appendChild(wonderImage);
-
-        // Add click event listener to display the wonder description
-        wonderImage.addEventListener("click", function () {
-            // Clear the description container
-            descriptionContainer.innerHTML = "";
-
-            // Create an image element for the clicked wonder
-            const wonderImageElement = document.createElement("img");
-            wonderImageElement.src = `Images/World Wonder Images/${wonder.name}.webp`;
-            wonderImageElement.alt = wonder.name;
-            wonderImageElement.style.width = '100px'; // Adjust width as needed
-
-            // Create a heading element for the wonder name
-            const wonderNameElement = document.createElement("h2");
-            wonderNameElement.textContent = wonder.name;
-
-            // Append the wonder image and name to the description container
-            descriptionContainer.appendChild(wonderImageElement);
-            descriptionContainer.appendChild(wonderNameElement);
-
-            //This allows me to generate the icons with the descriptions.
-            // Generate the description with icons
-            let descriptionWithIcons = wonder.description
+            
+            const isVersatile = wonder.victory.includes("all");
+            
+            // Check if the wonder matches any of the selected victory conditions
+            const victoryMatch = isVersatile || allVictoriesMatch;
+            
+            // Apply the appropriate class based on the match result
+            if (victoryMatch) {
+                wonderImage.classList.add("lit-up");
+                wonderImage.classList.remove("dimmed");
+            } else {
+                wonderImage.classList.add("dimmed");
+                wonderImage.classList.remove("lit-up");
+            }
+            
+            // Append the image to the container
+            wonderContainer.appendChild(wonderImage);
+            
+            // Add click event listener to display the wonder description
+            wonderImage.addEventListener("click", function () {
+                // Clear the description container
+                descriptionContainer.innerHTML = "";
+                
+                // Create an image element for the clicked wonder
+                const wonderImageElement = document.createElement("img");
+                wonderImageElement.src = `Images/World Wonder Images/${wonder.name}.webp`;
+                wonderImageElement.alt = wonder.name;
+                wonderImageElement.style.width = '100px'; // Adjust width as needed
+                
+                // Create a heading element for the wonder name
+                const wonderNameElement = document.createElement("h2");
+                wonderNameElement.textContent = wonder.name;
+                
+                // Append the wonder image and name to the description container
+                descriptionContainer.appendChild(wonderImageElement);
+                descriptionContainer.appendChild(wonderNameElement);
+                
+                // Generate the description with icons
+                let descriptionWithIcons = wonder.description
                 .replace(/{housing_icon}/g, "<img src='Images/Icon Images/Housing.webp' alt='Housing icon' style='width:16px;height:16px;'>")
                 .replace(/{production_icon}/g, "<img src='Images/Icon Images/Production.webp' alt='Production icon' style='width:16px;height:16px;'>")
                 .replace(/{amenities_icon}/g, "<img src='Images/Icon Images/Amenities.webp' alt='Amenities icon' style='width:16px;height:16px;'>")
@@ -213,14 +241,49 @@ function renderWonders(selectedVictories) {
                 .replace(/{favor_icon}/g, "<img src='Images/Icon Images/DiplomaticFavor.webp' alt='DiplomaticFavor icon' style='width:16px;height:16px;'>")
                 .replace(/{power_icon}/g, "<img src='Images/Icon Images/Power.webp' alt='Power icon' style='width:16px;height:16px;'>")
                 .replace(/{faith_icon}/g, "<img src='Images/Icon Images/Faith.webp' alt='Faith icon' style='width:16px;height:16px;'>");
-
-            // Append the description to the container
-            descriptionContainer.innerHTML += descriptionWithIcons;
+                
+                // Append the description with icons to the container
+                descriptionContainer.innerHTML += descriptionWithIcons;
+                
+                // Display victory conditions the wonder is good for at the end of the description
+                const victoryConditionsContainer = document.createElement("div");
+                victoryConditionsContainer.classList.add("victory-conditions-container");
+                
+                // Append the victory image and tooltip to the victory conditions container
+                // When creating the tooltip for the victory conditions in the description container
+                wonder.victory.forEach(victory => {
+                    if (victory === "all") {
+                        // Display "ALL" if the wonder is good for all victory conditions
+                        const allElement = document.createElement("p");
+                        allElement.textContent = "All Victory Types";
+                        victoryConditionsContainer.appendChild(allElement);
+                    } else {
+                        // Otherwise, append the victory condition image and tooltip
+                        const victoryImage = document.createElement("img");
+                        victoryImage.src = victoryConditionsMap[victory].src;
+                        victoryImage.alt = victoryConditionsMap[victory].alt;
+                        victoryImage.style.width = '75px'; // Adjust width as needed
+                        
+                        // Create a tooltip element and set its class and content
+                        const tooltip = document.createElement("div");
+                        tooltip.classList.add("description-tooltip"); // Use the new class for the description container
+                        tooltip.textContent = victoryConditionsMap[victory].alt;
+                        
+                        // Append the tooltip as a sibling to the victory image
+                        victoryImage.after(tooltip);
+                        
+                        // Append the victory image to the victory conditions container
+                        victoryConditionsContainer.appendChild(victoryImage);
+                    }
+                });
+                
+                // Append the victory conditions container at the end of the description container
+                descriptionContainer.appendChild(victoryConditionsContainer);
+                console.log('Completed click event for', wonder.name);
+            });
+            
+            // Append the wonder container to the tier container
+            currentTierContainer.appendChild(wonderContainer);
         });
-
-        // Append the wonder container to the tier container
-        currentTierContainer.appendChild(wonderContainer);
-    });
-}
-
-    });
+    }
+});
