@@ -6,56 +6,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Civilizations - Civilization VI Helper</title>
     <link rel="stylesheet" href="styles.css">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
 </head>
 
 <body class="civilizations-page">
-    <div class="link-text">
-        <span class="link-text">
-            <a href="index.html">Home</a>
-            <a href="wonders.html">World Wonders</a>
-        </span>
-    </div>
+    <!-- Add a hamburger button -->
+    <button id="hamburgerButton" class="hamburger-button">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+    <!-- Add a navigation menu -->
+    <nav id="navMenu" class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="wonders.html">Wonders</a>
+    </nav>
     <div class="main-content">
+        <h2>Select Your Victory Type(s):</h2>
         <div class="victory-conditions">
             <label for="dominationCheckbox" class="checkbox-label">
                 <input type="checkbox" id="dominationCheckbox">
                 <img src="Images/Victory Type Images/Domination_Victory_29.webp"
-                    alt="Domination">
-                    <div class="tooltip">Domination</div>
+                alt="Domination">
+                <div class="tooltip">Domination</div>
             </label>
             <label for="scienceCheckbox" class="checkbox-label">
                 <input type="checkbox" id="scienceCheckbox">
                 <img src="Images/Victory Type Images/Science_Victory_29.webp"
-                    alt="Science">
-                    <div class="tooltip">Science</div>
+                alt="Science">
+                <div class="tooltip">Science</div>
             </label>
             <label for="cultureCheckbox" class="checkbox-label">
                 <input type="checkbox" id="cultureCheckbox">
                 <img src="Images/Victory Type Images/Culture_Victory_29.webp"
-                    alt="Culture">
-                    <div class="tooltip">Culture</div>
+                alt="Culture">
+                <div class="tooltip">Culture</div>
             </label>
             <label for="religionCheckbox" class="checkbox-label">
                 <input type="checkbox" id="religionCheckbox">
                 <img src="Images/Victory Type Images/Religious_Victory_29.webp"
-                    alt="Religion">
-                    <div class="tooltip">Religion</div>
+                alt="Religion">
+                <div class="tooltip">Religion</div>
             </label>
             <label for="diplomacyCheckbox" class="checkbox-label">
                 <input type="checkbox" id="diplomacyCheckbox">
                 <img src="Images/Victory Type Images/Diplomatic_Victory_29.webp"
-                    alt="Diplomacy">
-                    <div class="tooltip">Diplomacy</div>
+                alt="Diplomacy">
+                <div class="tooltip">Diplomacy</div>
             </label>
         </div>
-    
+        
         <div class="civilizations" id="civilizationsList">
             <!-- Civilizations will be dynamically added here -->
         </div>
     </div>
-
+    
     <script src="civsScript.js"></script>
+    <script src="hamburgerMenu.js"></script>
 </body>
 
 </html>

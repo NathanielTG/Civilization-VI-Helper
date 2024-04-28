@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
         { name: "Gran Colombia", victories: ["domination"] },
         { name: "Greece", victories: ["domination", "culture", "diplomacy"] },
         { name: "Hungary", victories: ["domination", "diplomacy"] },
-        { name: "Inca", victories: ["science", "religion", "domination", "culture"] },
+        { name: "Inca", victories: ["science"] },
         { name: "India", victories: ["religion", "domination"] },
         { name: "Indonesia", victories: ["domination", "science", "culture", "religion"] },
         { name: "Japan", victories: ["domination", "culture", "science", "religion"] },
@@ -83,28 +83,28 @@ document.addEventListener("DOMContentLoaded", function () {
     
     function renderCivilizations(selectedVictories) {
         civilizationsList.innerHTML = "";
-    
+        
         const baseSize = 50; // Base size of the image
         const baseBrightness = 30; // Base brightness
         const sizeIncrement = 10; // Size increment for each matching victory
         const brightnessIncrement = 30; // Brightness increment for each matching victory
-    
+        
         civilizationsData.forEach(civilization => {
             const civilizationElement = document.createElement("div");
             civilizationElement.classList.add("civilization");
-    
+            
             // Create an image element and set its attributes
             const civilizationImage = new Image();
             civilizationImage.src = `Images/Civ Images/${civilization.name}.webp`;
             civilizationImage.alt = civilization.name;
-    
+            
             // Check for an exact match between the selected victories and the civilization's victories
             const isExactMatch = selectedVictories.length === civilization.victories.length &&
-                                 selectedVictories.every(victory => civilization.victories.includes(victory));
-    
+            selectedVictories.every(victory => civilization.victories.includes(victory));
+            
             // Count the number of matching victories
             const matchingVictoriesCount = civilization.victories.filter(victory => selectedVictories.includes(victory)).length;
-    
+            
             if (isExactMatch) {
                 // Set the size of the image to the maximum size if there is an exact match
                 civilizationImage.style.width = '75px';
@@ -114,27 +114,27 @@ document.addEventListener("DOMContentLoaded", function () {
                 civilizationImage.classList.add("exact-match");
             } else {
                 // Adjust the size and brightness incrementally based on the number of matching victories
-                const newSize = baseSize + (sizeIncrement * matchingVictoriesCount);
                 const newBrightness = baseBrightness + (brightnessIncrement * matchingVictoriesCount);
-    
-                // Apply the calculated size and brightness
-                civilizationImage.style.width = `${newSize}px`;
-                civilizationImage.style.height = `${newSize}px`;
+                // Apply the scale transformation based on the calculated size increment
+                const scale = 1 + (matchingVictoriesCount * sizeIncrement / baseSize);
+                civilizationImage.style.transform = `scale(${scale})`;
+                
+                // Apply the calculated brightness
                 civilizationImage.style.filter = `brightness(${newBrightness}%)`;
             }
-    
+            
             // Create a tooltip element
             const tooltip = document.createElement("div");
             tooltip.classList.add("tooltip");
             tooltip.textContent = civilization.name;
-    
+            
             // Append the image and tooltip to the civilization element
             civilizationElement.appendChild(civilizationImage);
             civilizationElement.appendChild(tooltip);
-    
+            
             // Append the civilization element to the list
             civilizationsList.appendChild(civilizationElement);
         });
     }
-        
+    
 });

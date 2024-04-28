@@ -16,12 +16,16 @@
     display: block; /* Treat links as block elements */
     margin: 10px 0; /* Space between the links */
     text-decoration: none; /* Remove underline from links */
-    color: black; /* Set link color */
+    color: rgb(255, 255, 255); /* Set link color */
     padding: 10px; /* Optional: add padding for better spacing */
-    font-size: 1.2rem; /* Adjust the font size */
     border-radius: 4px; /* Optional: rounding the corners of links */
     font-size: 2rem; /* Adjust font size as desired */
     text-align: center; /* Center the text within the link */
+}
+
+.homepage-link a:hover{
+    color: rgb(242, 190, 0);
+    transition: 0.3s;
 }
 
 /* Remove the body margin only on the homepage */
@@ -29,24 +33,95 @@
     margin: 0; /* Remove margin */
 }
 
-/**********************************/
-/*******LINKS TO OTHER PAGES*******/
-/**********************************/
+/**************************/
+/*********NAV MENU*********/
+/**************************/
 
-.link-text {
-    text-align: left;
-    font-size: 30px;
+
+/* Style the hamburger button */
+.hamburger-button {
+    display: none; /* Hide the button by default (for larger screens) */
+    flex-direction: column;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    z-index: 2;
 }
 
-.link-text a {
-    color: #ffffff;
+/* Style the bars of the hamburger button */
+.hamburger-button .bar {
+    width: 25px;
+    height: 3px;
+    background-color: white; /* Set the bar color */
+    margin: 4px 0; /* Margin between the bars */
+    transition: all 0.3s ease;
+    border-radius: 1px; /* Rounded edges for the bars */
+}
+
+/* Style the navigation menu */
+.nav-menu {
+    display: flex; /* Use Flexbox layout */
+    flex-direction: column; /* Arrange links in a column */
+    align-items: flex-start; /* Align links to the left */
+    justify-content: flex-start; /* Align links to the top */
+}
+
+/* Mobile view adjustments */
+@media (max-width: 768px) {
+    /* Show the hamburger button in mobile view */
+    .hamburger-button {
+        display: flex;
+    }
+
+    /* Hide the navigation menu in mobile view */
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 50px;
+        left: 10px;
+        background-color: rgba(0, 0, 0, 0.9);
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    /* Show the navigation menu when the hamburger button is active */
+    #hamburgerButton.active + #navMenu {
+        display: flex;
+    }
+}
+
+/* Active state for the hamburger button */
+.hamburger-button.active .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger-button.active .bar:nth-child(2) {
+    opacity: 0; /* Hide the middle bar */
+}
+
+.hamburger-button.active .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Menu is visible when it has the 'active' class */
+.nav-menu.active {
+    display: block;
+}
+
+/* Style the links in the menu */
+.nav-menu a {
+    font-size: 28px;
+    display: block;
+    color: white;
     text-decoration: none;
+    margin-bottom: 10px;
+    transition: color 0.3s ease; /* Smooth transition for link color */
 }
 
-/* Hovered link styles */
-.link-text a:hover {
-    color: #ffff00;
-    transition: 0.3s ease-in-out;
+/* Change link color on hover */
+.nav-menu a:hover {
+    color: rgb(242, 190, 0);
 }
 
 /**********************************/
@@ -60,9 +135,9 @@ p {
 body {
     background-color: rgb(0, 0, 42);
     color: white;
-    font-family: Arial, sans-serif;
+    font-family: "Oswald", sans-serif;
     margin: 56px;
-    font-size: 14px;
+    font-size: 20px;
 }
 
 /**********************************/
@@ -131,6 +206,10 @@ body.wonders-page {
 .victory-conditions-container img {
     margin: 0px 5px; /* Add margin between images */
     position: relative; /* Position tooltip relative to the image */
+}
+
+.victory-conditions-container p {
+    font-size: 2rem;
 }
 
 /* Tooltip styling */
@@ -209,9 +288,10 @@ body.wonders-page {
         width: 40px;
     }
 
+
 }
 
-img {
+.wonders-page img {
     max-width: 100%;
     height: auto;
     width: 70px;
@@ -299,6 +379,23 @@ img {
     /* Additional tooltip styles */
 }
 
+.victory-conditions img {
+    width: 104px;
+}
+
+@media (max-width: 1300px) {
+    .victory-conditions img {
+        width: 80px;
+    }      
+}
+
+@media (max-width: 922px) {
+    .victory-conditions img {
+        width: 70px;
+    }      
+}
+
+
 /**********************************/
 /*********CIVILIZATIONS************/
 /**********************************/
@@ -307,13 +404,38 @@ img {
 /* Grid of Civs */
 /**********************************/
 
+body.civilizations-page {
+    text-align: center;
+}
+
 #civilizationsList {
     display: flex;
-    justify-content: center; /* Center images in the container */
-    align-items: center; /* Align images vertically */
-    flex-wrap: wrap; /* Wrap images in rows */
-    margin: 0px 146px; /* Maintain consistent margin */
-    min-height: 200px; /* Reserve space for images */
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0px 146px;
+    min-height: 200px;
+    gap: 10px;
+}
+
+@media (max-width: 1316px) {
+    #civilizationsList {
+        margin: 0px 50px;
+    }
+}
+
+@media (max-width: 1400px) {
+    #civilizationsList {
+        margin: 0px 0px;
+        gap: 0px;
+    }
+}
+
+@media (max-width: 800px) {
+    #civilizationsList {
+        margin: 0 auto; /* Auto margins to center the grid */
+        padding: 10px; /* Optional padding for smaller screens */
+    }
 }
 
 #civilizationsList img {
@@ -323,6 +445,13 @@ img {
     display: inline-block;
     border: 2px solid transparent; /* Transparent border by default */
     position: relative;
+}
+
+@media (max-width: 922px) {
+    #civilizationsList img {
+        width: 30px;
+        height: 30px;
+    }
 }
 
 /* Define the scale increments based on the number of victory conditions met */
@@ -354,6 +483,7 @@ img {
 /* This is for the civilizations. */
 #civilizationsList .exact-match {
     border: 4px solid yellow;
+    padding: 4px;
 }
 
 /**********************************/
@@ -364,11 +494,25 @@ img {
 
 .civilization {
     position: relative;
-    width: 120px; /* Reserve space for the maximum size image */
-    height: 120px; /* Reserve space for the maximum size image */
+    width: 90px;
+    height: 90px;
     display: flex;
-    justify-content: center; /* Center the image horizontally */
-    align-items: center; /* Center the image vertically */
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 967px) {
+    .civilization {
+        width: 60px;
+        height: 90px;    
+    }
+}
+
+@media (max-width: 598px) {
+    .civilization {
+        width: 60px;
+        height: 70px;    
+    }
 }
 
 .civilization img:hover + .tooltip,
@@ -379,6 +523,7 @@ img {
 
 .civilization .tooltip {
     visibility: hidden;
+    font-size: 1.5rem;
     background-color: #f6f6f6;
     color: #000000;
     text-align: center;
@@ -390,7 +535,6 @@ img {
     left: 50%;
     transform: translateX(-50%);
     opacity: 0.9;
-    /* Center the tooltip horizontally */
 }
 
 .civilization .tooltip:after {
