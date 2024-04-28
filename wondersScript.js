@@ -262,18 +262,30 @@ document.addEventListener("DOMContentLoaded", function () {
                         const victoryImage = document.createElement("img");
                         victoryImage.src = victoryConditionsMap[victory].src;
                         victoryImage.alt = victoryConditionsMap[victory].alt;
-                        victoryImage.style.width = '75px'; // Adjust width as needed
                         
                         // Create a tooltip element and set its class and content
                         const tooltip = document.createElement("div");
-                        tooltip.classList.add("description-tooltip"); // Use the new class for the description container
+                        tooltip.classList.add("description-tooltip");
                         tooltip.textContent = victoryConditionsMap[victory].alt;
+                        tooltip.style.visibility = 'hidden';
+                        tooltip.style.opacity = '0';
                         
-                        // Append the tooltip as a sibling to the victory image
-                        victoryImage.after(tooltip);
+                        // Append the tooltip after the victory image in the DOM
+                        victoryImage.addEventListener("mouseenter", () => {
+                            tooltip.style.visibility = "visible";
+                            tooltip.style.opacity = "1";
+                        });
+                        victoryImage.addEventListener("mouseleave", () => {
+                            tooltip.style.visibility = "hidden";
+                            tooltip.style.opacity = "0";
+                        });
                         
-                        // Append the victory image to the victory conditions container
-                        victoryConditionsContainer.appendChild(victoryImage);
+                        // Append the victory image and tooltip
+                        const wrapper = document.createElement("div");
+                        wrapper.appendChild(victoryImage);
+                        wrapper.appendChild(tooltip);
+                        wrapper.classList.add('victory-wrapper');
+                        victoryConditionsContainer.appendChild(wrapper);
                     }
                 });
                 
