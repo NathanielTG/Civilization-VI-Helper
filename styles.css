@@ -309,36 +309,51 @@ img {
 
 #civilizationsList {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    position: relative;
-    margin: 0px 146px;
+    justify-content: center; /* Center images in the container */
+    align-items: center; /* Align images vertically */
+    flex-wrap: wrap; /* Wrap images in rows */
+    margin: 0px 146px; /* Maintain consistent margin */
+    min-height: 200px; /* Reserve space for images */
 }
 
 #civilizationsList img {
-    margin: 5px; /* Set the margin to create a gap */
+    margin: 5px; /* Maintain consistent margin */
     object-fit: cover;
-    border-radius: 35px;
+    border-radius: 50%; /* Maintain circular shape */
     display: inline-block;
-    border: 2px solid transparent; /* Add transparent border by default */
+    border: 2px solid transparent; /* Transparent border by default */
     position: relative;
-    transition: filter 0.3s; /* Add transition property for filter */
 }
 
-/**********************************/
+/* Define the scale increments based on the number of victory conditions met */
+#civilizationsList img[data-matched-victories="1"] {
+    transform: scale(1.2); /* Scale up slightly for 1 victory */
+    filter: brightness(110%); /* Increase brightness slightly */
+}
+
+#civilizationsList img[data-matched-victories="2"] {
+    transform: scale(1.4); /* Scale up more for 2 victories */
+    filter: brightness(120%); /* Increase brightness more */
+}
+
+#civilizationsList img[data-matched-victories="3"] {
+    transform: scale(1.6); /* Scale up further for 3 victories */
+    filter: brightness(130%); /* Increase brightness further */
+}
+
+#civilizationsList img[data-matched-victories="4"] {
+    transform: scale(1.8); /* Scale up the most for 4 victories */
+    filter: brightness(140%); /* Increase brightness the most */
+}
+
+/******************************************/
 /* If the exact victory types are matched */
-/**********************************/
-
-.civilization img.exact-match {
-    transform: scale(1.5); /* Scale up for emphasis */
-    transition: transform 0.3s; /* Add transition property */
-}
+/******************************************/
 
 
 /* This is for the civilizations. */
 #civilizationsList .exact-match {
-    border: 2px solid yellow;
+    border: 4px solid yellow;
 }
 
 /**********************************/
@@ -349,6 +364,11 @@ img {
 
 .civilization {
     position: relative;
+    width: 120px; /* Reserve space for the maximum size image */
+    height: 120px; /* Reserve space for the maximum size image */
+    display: flex;
+    justify-content: center; /* Center the image horizontally */
+    align-items: center; /* Center the image vertically */
 }
 
 .civilization img:hover + .tooltip,

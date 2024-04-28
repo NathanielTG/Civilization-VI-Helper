@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const checkboxes = document.querySelectorAll("input[type=checkbox]");
     const civilizationsList = document.getElementById("civilizationsList");
-
+    
     const civilizationsData = [
         { name: "America", victories: ["culture", "domination", "diplomacy"] },
         { name: "Arabia", victories: ["religion", "science"] },
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
         { name: "Germany", victories: ["domination", "science", "culture"] },
         { name: "Gran Colombia", victories: ["domination"] },
         { name: "Greece", victories: ["domination", "culture", "diplomacy"] },
-        { name: "Hungary", victories: ["domination"] },
+        { name: "Hungary", victories: ["domination", "diplomacy"] },
         { name: "Inca", victories: ["science", "religion", "domination", "culture"] },
         { name: "India", victories: ["religion", "domination"] },
         { name: "Indonesia", victories: ["domination", "science", "culture", "religion"] },
@@ -54,14 +54,14 @@ document.addEventListener("DOMContentLoaded", function () {
         { name: "Vietnam", victories: ["domination", "culture"] },
         { name: "Zulu", victories: ["domination"] }
     ];
-
+    
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener("change", updateCivilizations);
     });
-
+    
     // Initial rendering on page load
     preloadImages();
-
+    
     function preloadImages() {
         civilizationsData.forEach(civilization => {
             const img = new Image();
@@ -72,58 +72,69 @@ document.addEventListener("DOMContentLoaded", function () {
             img.src = `Images/Civ Images/${civilization.name}.webp`;
         });
     }
-
+    
     function updateCivilizations() {
         const selectedVictories = Array.from(checkboxes)
-            .filter(checkbox => checkbox.checked)
-            .map(checkbox => checkbox.id.replace("Checkbox", ""));
-
+        .filter(checkbox => checkbox.checked)
+        .map(checkbox => checkbox.id.replace("Checkbox", ""));
+        
         renderCivilizations(selectedVictories);
     }
-
+    
     function renderCivilizations(selectedVictories) {
         civilizationsList.innerHTML = "";
+    
+        const baseSize = 50; // Base size of the image
+        const baseBrightness = 30; // Base brightness
+        const sizeIncrement = 10; // Size increment for each matching victory
+        const brightnessIncrement = 30; // Brightness increment for each matching victory
     
         civilizationsData.forEach(civilization => {
             const civilizationElement = document.createElement("div");
             civilizationElement.classList.add("civilization");
     
-            // Create container for wonder and tooltip
-            const civContainer = document.createElement("div");
-            civContainer.classList.add("civ-container");
-
-            // Create image element and set its attributes
+            // Create an image element and set its attributes
             const civilizationImage = new Image();
             civilizationImage.src = `Images/Civ Images/${civilization.name}.webp`;
             civilizationImage.alt = civilization.name;
     
-            // Check if the selected victories exactly match the civilization's victories
-            const isExactMatch = JSON.stringify(selectedVictories.sort()) === JSON.stringify(civilization.victories.sort());
+            // Check for an exact match between the selected victories and the civilization's victories
+            const isExactMatch = selectedVictories.length === civilization.victories.length &&
+                                 selectedVictories.every(victory => civilization.victories.includes(victory));
     
-            // Apply the exact-match class if there is an exact match
+            // Count the number of matching victories
+            const matchingVictoriesCount = civilization.victories.filter(victory => selectedVictories.includes(victory)).length;
+    
             if (isExactMatch) {
+                // Set the size of the image to the maximum size if there is an exact match
+                civilizationImage.style.width = '75px';
+                civilizationImage.style.height = '75px';
+                // Set the brightness to the maximum if there is an exact match
+                civilizationImage.style.filter = 'brightness(130%)';
                 civilizationImage.classList.add("exact-match");
             } else {
-                const totalVictories = civilization.victories.length;
-                const selectedRatio = selectedVictories.filter(victory => civilization.victories.includes(victory)).length / totalVictories;
+                // Adjust the size and brightness incrementally based on the number of matching victories
+                const newSize = baseSize + (sizeIncrement * matchingVictoriesCount);
+                const newBrightness = baseBrightness + (brightnessIncrement * matchingVictoriesCount);
     
-                // Adjust the brightness based on the ratio
-                const brightness = 30 + (selectedRatio * 70);
-    
-                civilizationImage.style.filter = `brightness(${brightness}%)`;
+                // Apply the calculated size and brightness
+                civilizationImage.style.width = `${newSize}px`;
+                civilizationImage.style.height = `${newSize}px`;
+                civilizationImage.style.filter = `brightness(${newBrightness}%)`;
             }
-            
-            // Create tooltip element
+    
+            // Create a tooltip element
             const tooltip = document.createElement("div");
             tooltip.classList.add("tooltip");
             tooltip.textContent = civilization.name;
-
-            // Append image element to civilization element
+    
+            // Append the image and tooltip to the civilization element
             civilizationElement.appendChild(civilizationImage);
             civilizationElement.appendChild(tooltip);
-
+    
+            // Append the civilization element to the list
             civilizationsList.appendChild(civilizationElement);
         });
     }
-    
+        
 });
