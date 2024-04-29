@@ -189,7 +189,6 @@ body.wonders-page {
     width: 30%; /* Adjust the width as needed */
     float: right; /* Float the container to the right */
     padding: 10px; /* Add padding for spacing */
-    background-color: #00002a; /* Set the background color */
     color: rgb(255, 255, 255); /* Set the text color to white */
 }
 
@@ -233,6 +232,10 @@ body.wonders-page {
 .victory-conditions-container img:hover + .tooltip {
     visibility: visible; /* Make tooltip visible */
     opacity: 1; /* Make tooltip fully opaque */
+}
+
+.description-tooltip {
+    transition: 0.3s;
 }
 
 
@@ -302,13 +305,20 @@ body.wonders-page {
     display: inline-block;
 }
 
-/* This is for the wonders. */
+/* Apply transition properties for lit-up and dimmed classes */
+.lit-up, .dimmed {
+    transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+/* Define the styles for the lit-up and dimmed states */
 .lit-up {
     filter: brightness(125%);
+    opacity: 1;
 }
 
 .dimmed {
     filter: brightness(40%);
+    opacity: 0.6; /* Adjust opacity as desired */
 }
 
 .victory-conditions {
@@ -369,14 +379,15 @@ body.wonders-page {
 }
 
 .checkbox-label:hover .tooltip {
-    visibility: visible; /* Show tooltip when hovering over the label */
     opacity: 1;
+    visibility: visible;
     text-align: center;
 }
 
 .checkbox-label .tooltip {
-    visibility: hidden; /* Hide tooltip by default */
-    /* Additional tooltip styles */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
 }
 
 .victory-conditions img {
@@ -523,18 +534,17 @@ body.civilizations-page {
 
 .civilization .tooltip {
     visibility: hidden;
-    font-size: 1.5rem;
-    background-color: #f6f6f6;
-    color: #000000;
-    text-align: center;
-    padding: 10px;
-    border-radius: 5px;
+    opacity: 0;
+    transition: visibility 0.3s ease, opacity 0.3s ease;
     position: absolute;
-    z-index: 1;
     bottom: 100%;
     left: 50%;
     transform: translateX(-50%);
-    opacity: 0.9;
+    background-color: rgb(255, 255, 255); /* Tooltip background color */
+    color: rgb(0, 0, 0); /* Tooltip text color */
+    padding: 5px; /* Add padding for spacing */
+    border-radius: 4px; /* Optional: rounded corners */
+    z-index: 1; /* Make sure tooltip appears on top */
 }
 
 .civilization .tooltip:after {
