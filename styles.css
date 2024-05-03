@@ -428,6 +428,42 @@ body.wonders-page {
     
 }
 
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    /* Modal styles */
+    .modal {
+        display: none; /* Initially hidden */
+        position: fixed; /* Fixed position */
+        top: 0;
+        left: 0;
+        width: 100%; /* Full width of the screen */
+        height: 100%; /* Full height of the screen */
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        justify-content: center; /* Center the modal content horizontally */
+        align-items: center; /* Center the modal content vertically */
+        z-index: 1000; /* High z-index to appear on top */
+    }
+
+    /* Modal content styles */
+    .modal-content {
+        background-color: white; /* White background */
+        padding: 20px; /* Padding inside the modal */
+        border-radius: 8px; /* Rounded corners */
+        max-width: 80%; /* Adjust the max width of the modal content */
+        margin: auto; /* Center the modal content */
+    }
+
+    /* Close button styles */
+    .close-btn {
+        position: absolute; /* Position the close button absolutely */
+        top: 10px; /* Position the button 10px from the top */
+        right: 10px; /* Position the button 10px from the right */
+        cursor: pointer; /* Pointer cursor on hover */
+        font-size: 24px; /* Font size for the close button */
+    }
+}
+
+
 .wonder-container {
     position: relative;
     display: inline-block;
