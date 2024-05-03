@@ -49,7 +49,6 @@
     background: transparent;
     border: none;
     z-index: 2;
-    position: fixed;
 }
 
 /* Style the bars of the hamburger button */
@@ -91,6 +90,7 @@
     /* Show the hamburger button in mobile view */
     .hamburger-button {
         display: flex;
+        width: 10%;
     }
     
     /* Hide the navigation menu in mobile view */
@@ -100,7 +100,7 @@
         position: absolute;
         top: 50px;
         left: 10px;
-        background-color: rgba(0, 0, 0, 0.9);
+        background-color: rgb(255 255 255 / 90%);
         padding: 10px;
         border-radius: 5px;
     }
@@ -113,15 +113,17 @@
 
 /* Active state for the hamburger button */
 .hamburger-button.active .bar:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
+    /* Top bar: rotate 45 degrees and translate */
+    transform: rotate(45deg) translate(14px, 12px);
 }
 
 .hamburger-button.active .bar:nth-child(2) {
-    opacity: 0; /* Hide the middle bar */
+    /* Middle bar: hide by setting opacity to 0 */
+    opacity: 0;
 }
 
 .hamburger-button.active .bar:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
+    transform: rotate(-45deg) translate(4px, -2px);
 }
 
 /* Menu is visible when it has the 'active' class */
@@ -169,7 +171,13 @@ body {
 body.wonders-page {
     display: flex;
     flex-direction: column;
-    padding-top: 60px;
+    padding-top: 72px;
+}
+
+@media (max-width: 768px) {
+    body.wonders-page {
+        padding-top: 0px;
+    }
 }
 
 /* Change the cursor to a pointer when hovering over the wonder images */
@@ -246,6 +254,18 @@ body.wonders-page {
     position: absolute;
 }
 
+/* Media query for mobile view */
+@media (max-width: 768px) {
+    .additional-info-container {
+        top: 30%;
+        left: 8%;
+    }
+
+    .additional-info-container img {
+        width: 20px;
+    }
+}
+
 .additional-info-container .tooltip {
     position: absolute;
     padding: 5px 10px;
@@ -310,7 +330,6 @@ body.wonders-page {
 /* Style the wonders list */
 #wondersList {
     border-radius: 12px;
-    outline: 2px solid #ffffff33;
     padding: 5px; /* Optional: Add padding for spacing */
     width: 65%; /* Adjust the width of the wonders list as needed */
     height: 100%; /* Make sure the wonders list takes up the full height of the parent container */
@@ -337,6 +356,11 @@ body.wonders-page {
     justify-content: center; /* Center images in the container */
     gap: 10px; /* Add space between images */
     align-items: center; /* Center items vertically */
+    flex-wrap: wrap;
+}
+
+.wonders-page .main-content .victory-conditions {
+    margin-bottom: 20px;
 }
 
 /* Image styles within victory conditions container */
@@ -428,41 +452,62 @@ body.wonders-page {
     
 }
 
-/* Media query for mobile devices */
-@media (max-width: 768px) {
-    /* Modal styles */
-    .modal {
-        display: none; /* Initially hidden */
-        position: fixed; /* Fixed position */
-        top: 0;
-        left: 0;
-        width: 100%; /* Full width of the screen */
-        height: 100%; /* Full height of the screen */
-        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-        justify-content: center; /* Center the modal content horizontally */
-        align-items: center; /* Center the modal content vertically */
-        z-index: 1000; /* High z-index to appear on top */
-    }
+/* Styles for the modal container */
 
-    /* Modal content styles */
-    .modal-content {
-        background-color: white; /* White background */
-        padding: 20px; /* Padding inside the modal */
-        border-radius: 8px; /* Rounded corners */
-        max-width: 80%; /* Adjust the max width of the modal content */
-        margin: auto; /* Center the modal content */
-    }
-
-    /* Close button styles */
+/* Hide close button in desktop view */
+@media (min-width: 769px) {
     .close-btn {
-        position: absolute; /* Position the close button absolutely */
-        top: 10px; /* Position the button 10px from the top */
-        right: 10px; /* Position the button 10px from the right */
-        cursor: pointer; /* Pointer cursor on hover */
-        font-size: 24px; /* Font size for the close button */
+        display: none;
     }
 }
 
+/* Media query for mobile view */
+@media (max-width: 768px) {
+    /* Modal container */
+    .wonder-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        padding: 10px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Modal content */
+    .modal-content {
+        background-color: #fff;
+        margin: auto;
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 90%;
+        text-align: center;
+    }
+
+    /* Close button */
+    .close-modal {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    /* Optional: style the close button if you have one */
+    #descriptionContainer .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        font-size: 1.5rem;
+        color: black;
+    }  
+}
 
 .wonder-container {
     position: relative;
@@ -471,6 +516,16 @@ body.wonders-page {
 
 .wonder-container img {
     width: 70px;
+}
+
+@media (max-width: 768px) {
+    .wonder-container img {
+        width: 50px;
+    }
+
+    #descriptionContainer img {
+        width: 35px;
+    }
 }
 
 /* Apply transition properties for lit-up and dimmed classes */
@@ -488,11 +543,29 @@ body.wonders-page {
 }
 
 .victory-conditions {
-    margin: 42px 0px;
     display: flex;
     text-align: center;
     justify-content: center;
     position: relative;
+}
+
+/* Media query for mobile view */
+@media (max-width: 768px) {
+    .victory-conditions {
+        width: 100%; /* Make the container as wide as the mobile screen */
+        display: flex; /* Use flexbox layout */
+        justify-content: center; /* Center the images within the container */
+        align-items: center; /* Align the images vertically */
+        flex-wrap: wrap; /* Allow images to wrap to new lines if necessary */
+        padding: 0;
+        margin-bottom: 12px; 
+    }
+    
+    .victory-conditions img {
+        max-width: 50px; /* Set a maximum width for images to fit within the screen */
+        height: auto; /* Maintain aspect ratio of the images */
+        margin: 5px; /* Add some spacing around the images */
+    }
 }
 
 .wonder {
@@ -657,6 +730,16 @@ body.civilizations-page {
 #civilizationsList .exact-match {
     border: 4px solid yellow;
     padding: 4px;
+    width: 65px;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    #civilizationsList .exact-match {
+        border: 3px solid yellow;
+        padding: 4px;
+        width: 44px;
+    }    
 }
 
 /**********************************/

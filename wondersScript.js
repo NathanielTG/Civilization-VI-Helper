@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () { 
     // Define tier explanations outside the function
     const tierExplanations = {
         "best": "The wonders in this tier are among the best in the game and you should aim to build these in every single one of your games. These wonders offer bonuses that are universally strong or good, regardless of the victory condition that you are aiming for.",
@@ -51,13 +51,13 @@ document.addEventListener("DOMContentLoaded", function () {
         { name: "Apadana", victory: ["culture", "diplomacy"], tier: "good", description: "+2 Great Work Slots. <br><br>+2 {envoy_icon} Envoys when you build a wonder, including Apadana, in this city.<br><br>Must be build adjacent to a {capital_icon} Capital." },
         { name: "Colosseum", victory: ["all"], tier: "best", description: "+2 {culture_icon} Culture, +2 {amenities_icon} Amenities, and +2 Loyalty to each City Center within 6 tiles.<br><br>Must be built on flat land adjacent to an Entertainment Complex district with an Arena." },
         { name: "Great Lighthouse", victory: ["domination"], tier: "niche", description: "+3 {gold_icon} Gold. <br><br>+1 {admiral_icon} Great Admiral point per turn.<br><br>+1 {movement_icon} for all naval units.<br><br>Must be built on the Coast and adjacent to a Harbor district with a Lighthouse." },
-        { name: "Jebel Barkal", victory: ["domination", "culture", "religion"], tier: "good", requiresAllVictories: true, description: "Awards 6 {iron_icon} Iron per turn.<br><br>Provides +4 {faith_icon} Faith to your cities that are within 6 tiles.<br><br>Must be built on Desert Hils." },
+        { name: "Jebel Barkal", victory: ["domination", "culture", "religion"], tier: "good", description: "Awards 6 {iron_icon} Iron per turn.<br><br>Provides +4 {faith_icon} Faith to your cities that are within 6 tiles.<br><br>Must be built on Desert Hils." },
         { name: "Mahabodhi Temple", victory: ["religion", "diplomacy"], tier: "good", requiresAllVictories: true, description: "+4 {faith_icon} Faith.<br><br>Grants 2 Apostles.<br><br>+2 Diplomatic Victory Points when built.<br><br>Must be built on Woods adjacent to a Holy Site district with a Temple, and player must have founded a religion." },
         { name: "Statue of Zeus", victory: ["domination"], tier: "good", description: "+3 {gold_icon} Gold.<br><br>Grants 3 Spearman, 3 Archers, and a Battering Ram.<br><br>+50% {production_icon} Production towards anti-cavalry units across your civilization.<br><br>Must be built on flat land adjacent to an Encampment with a Barracks." },
         { name: "Great Library", victory: ["culture", "science"], tier: "good", description: "+2 {science_icon} Science.<br><br>+1 {scientist_icon} Great Scientist and +1 {writer_icon} Great Writer point per turn.<br><br>+2 {writing_icon} Great Works of Writing slots.<br><br>Receives boost to all Ancient and Classical era technologies.<br><br>Receives a random tech boost after another player recruits a Great Scientist.<br><br>Must be built on flat land adjacent to a Campus with a Library." },
-        { name: "Mausoleum at Halicarnassus", victory: ["science", "culture"], tier: "good", description: "+1 {science_icon} Science, +1 {faith_icon} Faith, and +1 {culture_icon} Culture on all Coast tiles in this city.<br><br>All {engineer_icon} Great Engineers have an additional charge.<br><br>Must be built on a coastal tiel adjacent to a Harbor district." },
+        { name: "Mausoleum at Halicarnassus", victory: ["science", "culture"], tier: "good", description: "+1 {science_icon} Science, +1 {faith_icon} Faith, and +1 {culture_icon} Culture on all Coast tiles in this city.<br><br>All {engineer_icon} Great Engineers have an additional charge.<br><br>Must be built on a coastal tile adjacent to a Harbor district." },
         { name: "Colossus", victory: ["all"], tier: "good", description: "+3 {gold_icon} Gold.<br><br>+1 {admiral_icon} Great Admiral point per turn.<br><br>+1 {trade_icon} Trade Route capacity.<br><br>Grants a Trader unit.<br><br>Must be built on Coast and adjacent to a Harbor district." },
-        { name: "Machu Picchu", victory: ["science", "culture", "diplomacy"], tier: "good", description: "+4 {gold_icon} Gold.<br><br>Mountain tiles provide a standard adjacency bonus to Commercial Hub, Theater Square, and Industrial Zone districts in all cities.<br><br>Must be built on a Mountain tile that does not contain a volcano." },
+        { name: "Machu Picchu", victory: ["science", "culture", "diplomacy", "domination"], tier: "good", description: "+4 {gold_icon} Gold.<br><br>Mountain tiles provide a standard adjacency bonus to Commercial Hub, Theater Square, and Industrial Zone districts in all cities.<br><br>Must be built on a Mountain tile that does not contain a volcano." },
         { name: "Petra", victory: ["all"], tier: "good", description: "+2 {food_icon} Food, +2 {gold_icon} Gold, and +1 {production_icon} Production on all Desert tiles for this city (non-Floodplains).<br><br>Must be built on Desert or Floodplains without Hills." },
         { name: "Terracotta Army", victory: ["domination", "culture"], tier: "good", requiresAllVictories: true, description: "+2 {general_icon} Great General points per turn.<br><br>All current land units gain a {promotion_icon} Promotion level.<br><br>All Archaeologists from the owner may enter foreign lands without Open Borders.<br><br>Must be built on flat Grassland or Plains adjacent to an Encampment district with a Barracks or Stable." },
         { name: "Hagia Sophia", victory: ["religion"], tier: "good", description: "+4 {faith_icon} Faith.<br><br>Missionaries and Apostles can spread religion 1 extra time.<br><br>Must be built on flat land adjacent to a Holy Site district, and player must have founded a religion." },
@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Create the tooltip span element
                 const tooltip = document.createElement('span');
                 tooltip.classList.add('tooltip');
-                tooltip.textContent = tierExplanations[wonder.tier]; // Set tooltip content
+                tooltip.textContent = tierExplanations[wonder.tier]; // Set tooltip content                
                 
                 // Variables to track hover state and hide timeout
                 let isHoveringOverIcon = false;
@@ -380,5 +380,17 @@ document.addEventListener("DOMContentLoaded", function () {
             // Append the wonder container to the tier container
             currentTierContainer.appendChild(wonderContainer);
         });
-    }
+    }  
+    
+    // Code to add event listeners to info icons
+    const infoIcons = document.querySelectorAll('.tier-row-container .info-icon');
+    
+    infoIcons.forEach(infoIcon => {
+        const tooltip = infoIcon.nextElementSibling;
+        if (tooltip) {
+            toggleTooltip(infoIcon, tooltip);
+        }
+    });
+    
+    
 });

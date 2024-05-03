@@ -106,9 +106,6 @@ document.addEventListener("DOMContentLoaded", function () {
             const matchingVictoriesCount = civilization.victories.filter(victory => selectedVictories.includes(victory)).length;
             
             if (isExactMatch) {
-                // Set the size of the image to the maximum size if there is an exact match
-                civilizationImage.style.width = '75px';
-                civilizationImage.style.height = '75px';
                 // Set the brightness to the maximum if there is an exact match
                 civilizationImage.style.filter = 'brightness(130%)';
                 civilizationImage.classList.add("exact-match");
