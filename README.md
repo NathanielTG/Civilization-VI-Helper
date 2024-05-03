@@ -3,9 +3,7 @@ Civilization VI Helper
 
 ## Table of Contents
 - [Project Overview](#project-overview)
-- [Installation](#installation)
 - [Usage](#usage)
-- [Configuration](#configuration)
 - [Contributing](#contributing)
 - [License](#license)
 - [Contact Information](#contact-information)
@@ -19,20 +17,14 @@ Civilization VI Helper
 ## Project Overview
 This is a simple tool for Civ VI players to understand what each wonder does and what each wonder is good for based on the victory type that they are going for. There is also a section that lets the user pick their desired victory types and various civs will highlight, indicating which ones are best for the victory types selected.
 
-## Installation
-You can either click on the link that is provided to the repository through GitHub, or you can download the project to your machine.
-
 ## Usage
 [Explain how to use your project. Include code examples, command-line instructions, or other usage guidelines.]
 
-## Configuration
-[Include instructions on how to configure your project, such as setting environment variables or editing configuration files.]
-
 ## Contributing
-[Explain how others can contribute to your project. Include guidelines for submitting issues, feature requests, or pull requests.]
+You can help contribute trying to fix certain tasks that I would like to have done, but can't figure out myself. More coming soon!
 
 ## License
-[Specify the license under which your project is distributed. Provide a link to the full license text if necessary.]
+License is under me, I guess. This was for a school project, but I wanted to continue making it as a project for my portfolio.
 
 ## Contact Information
 You can just message me on GitHub at NathanielTG.
