@@ -25,10 +25,7 @@
         <a href="civilizations.html">Civilizations</a>
     </nav>
     <div class="main-content">
-    <p>If a wonder stays highlighted regardless of which victory condition you select, that means that that wonder is
-        versatile and is good for any victory
-        condition that you are trying to achieve.</p>
-    <h2>Select Your Victory Type:</h2>
+    <h2>Select Your Victory Type(s):</h2>
 
     <!-- Victory types-->
     <div class="victory-conditions">
@@ -63,6 +60,12 @@
                 <div class="tooltip">Diplomacy</div>
         </label>
     </div>
+<div class="additional-info-container">
+    <img src="Images\info.png" alt="Info icon" class="info-icon">
+    <span class="tooltip">If a wonder stays highlighted regardless of which victory condition you select, it means that wonder is
+        versatile and is good for any victory
+        condition that you are trying to achieve.</span>
+</div>    
 <div class="mainContainer">
 <div class="wonders" id="wondersList">
         <!-- World wonders will be dynamically added here -->
@@ -75,6 +78,15 @@
     </div>
     <script src="wondersScript.js"></script>
     <script src="hamburgerMenu.js"></script>
+        <!-- Footer -->
+        <footer>
+            <p>&copy; <span id="currentYear"></span> Nathaniel Gordon</p>
+            <p>GitHub: <a href="https://github.com/NathanielTG" target="_blank">NathanielTG</a></p>
+        </footer>
+        <script>
+            // Set the current year dynamically
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+        </script>            
 </body>
 
 </html>

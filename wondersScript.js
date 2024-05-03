@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Define tier explanations outside the function
     const tierExplanations = {
-        "best": "These wonders are among the best in the game and you should aim to build these in every single one of your games.",
-        "good": "Most wonders in the game are worth building, though they are generally geared either towards specific victory conditions, or specific scenarios in which the wonder will give useful benefits.",
-        "niche": "These wonders are generally not very good, though they can serve a purpose in very specific situations.",
-        "not worth": "These wonders should really be avoided, unless you have absolutely nothing else to build. The wonders in this tier offer very little for the amount of production it costs to build them."
+        "best": "The wonders in this tier are among the best in the game and you should aim to build these in every single one of your games. These wonders offer bonuses that are universally strong or good, regardless of the victory condition that you are aiming for.",
+        "good": "The wonders in this tier are generally worth building. However, a lot of wonders in this tier are either geared towards specific victory conditions, or require specific scenarios in which the wonder will give useful benefits.",
+        "niche": "The wonders in this tier are generally not very good or strong. However, they can serve a purpose or provide benefits in very specific or niche conditions.",
+        "not worth": "The wonders in this tier should avoid being built, unless you have nothing else to build. These wonders offer very little for the amount of production that it costs to build them."
     };
     
     const checkboxes = document.querySelectorAll("input[type=checkbox]");
@@ -38,7 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
             alt: "ALL"
         }
     };
-    
     
     //List of all wonders
     const wonders = [
@@ -81,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
         { name: "Potala Palace", victory: ["diplomacy"], tier: "good", description: "+2 {culture_icon} Culture and +3 {faith_icon} Faith.<br><br>+1 {diplomacy_policy_icon} Diplomatic policy slot.<br><br>+1 Diplomatic Victory Point when built.<br><br>Must be built on a Hill adjacent to a Mountain." },
         { name: "Bolshoi Theatre", victory: ["culture"], tier: "good", description: "+2 {writer_icon} Great Writer and +2 {musician_icon} Great Musician points per turn.<br><br>+1 {writing_icon} Great Work of Writing and +1 {music_icon} Great Work of Music slot.<br><br>Awards 2 randomly-chosen free civics when completed.<br><br>Must be built on flat land adjacent to a Theater Square district." },
         { name: "Oxford University", victory: ["science"], tier: "good", description: "+3 {scientist_icon} Great Scientist points per turn.<br><br>+2 {writing_icon} Great Works of Writing slots.<br><br>+20% {science_icon} Science in the city, and awards 2 randomly chosen free technologies when completed.<br><br>Must be built on flat Grasslands or Plains adjacent to a Campus district with a University." },
-        { name: "Ruhr Valley", victory: ["domination", "science", "culture"], tier: "good", description: "+20% {production_icon} Production in this city, and +1 {production_icon} Production for each Mine and Quarry in this city.<br><br>Must be built along a River adjacent to an Industrial Zone district with a Factory." },
+        { name: "Ruhr Valley", victory: ["domination", "science", "culture", "diplomacy"], tier: "good", description: "+20% {production_icon} Production in this city, and +1 {production_icon} Production for each Mine and Quarry in this city.<br><br>Must be built along a River adjacent to an Industrial Zone district with a Factory." },
         { name: "Statue of Liberty", victory: ["diplomacy"], tier: "good", description: "+4 Diplomatic Victory points when built.<br><br>All your cities within 6 tiles are 100% Loyal.<br><br>Must be built on a Coast adjacent to land and a Harbor." },
         { name: "Hermitage", victory: ["culture"], tier: "good", description: "+3 {artist_icon} Great Artist points per turn.<br><br>+4 {art_icon} Great Works of Art slots.<br><br>Must be built next to a River on a non-Desert and non-Tundra tile." },
         { name: "Orszaghaz", victory: ["diplomacy"], tier: "good", description: "+4 {culture_icon} Culture.<br><br>+100% {favor_icon} Diplomatic Favor per turn from starting a turn as a Suzerain of a city-state.<br><br>Must be built on a River." },
@@ -89,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
         { name: "Big Ben", victory: ["all"], tier: "good", description: "+6 {gold_icon} Gold and +3 {merchant_icon} Great Merchant points per turn.<br><br>+1 {economic_policy_icon} Economic policy slot.<br><br>Upon construction the treasury is increased by 50%.<br><br>Must be built next to a River adjacent to a Commercial Hub district with a Bank." },
         { name: "Eiffel Tower", victory: ["culture"], tier: "good", description: "All tiles in your civilization gain +2 Appeal.<br><br>Must be built on flat land adjacent to City Center." },
         { name: "Golden Gate Bridge", victory: ["culture"], tier: "niche", description: "+3 {amenities_icon} Amenities from entertainment.<br><br>+4 Appeal to all tiles in this city.<br><br>+100% {tourism_icon} Tourism from improvements and National Parks in this city.<br><br>Acts as a Modern Road and creates Modern Roads in land tiles on either end if not present.<br><br>Land units can cross without needing to disembark.<br><br>Must be built on a Coast tile. The bridge must run straight across the hex between two land tiles directly opposite one another. At least one water tile must be present on both the left and right sides of the bridge." },
-        { name: "Broadway", victory: ["culture"], tier: "good", description: "+3 {writer_icon} Great Writer and +3 {musician_icon} Great Musician points per turn.<br><br>+1 {writing_icon} Great Work of Writing and +2 {music_icon} Great Work of Music slots.<br><br>+20% Culture in this city.<br><br>Gain a free random Atomic Era civic boost.<br><br>Must be built on flat land next to a Theater Square district." },
+        { name: "Broadway", victory: ["culture"], tier: "good", description: "+3 {writer_icon} Great Writer and +3 {musician_icon} Great Musician points per turn.<br><br>+1 {writing_icon} Great Work of Writing and +2 {music_icon} Great Work of Music slots.<br><br>+20% {culture_icon} Culture in this city.<br><br>Gain a free random Atomic Era civic boost.<br><br>Must be built on flat land next to a Theater Square district." },
         { name: "Cristo Redentor", victory: ["culture", "religion"], tier: "good", requiresAllVictories: true, description: "+4 {culture_icon} Culture.<br><br>{tourism_icon} Tourism output from {relic_icon} Relics and Holy Cities is not diminished by other civilizations who have researched The Enlightenment civic.<br><br>Double {tourism_icon} Tourism output of Seaside Resorts across your civilization.<br><br>Must be built on Hills." },
         { name: "Biosphere", victory: ["culture"], tier: "good", description: "+1 Appeal to tiles adjacent to Rainforest and Marsh in your empire.<br><br>+200% {power_icon} Power for all Offshore Wind Farms, Solar Farms, Wind Farms, Geothermal Plants, and Hydroelectric Dams. This building and these improvements provide {tourism_icon} Tourism equal to their {power_icon} Power.<br><br>Must be built next to a River adjacent to a Neighborhood." },
         { name: "Sydney Opera House", victory: ["culture"], tier: "good", description: "+8 {culture_icon} Culture.<br><br>+5 {musician_icon} Great Musician points per turn.<br><br>+3 {music_icon} Great Works of Music slots.<br><br>Must be built on Coast adjacent to a Harbor. Cannot be built on a Lake." },
@@ -123,7 +122,6 @@ document.addEventListener("DOMContentLoaded", function () {
         renderWonders(selectedVictories);
     }
     
-    
     function renderWonders(selectedVictories) {
         wondersList.innerHTML = "";
         
@@ -133,23 +131,107 @@ document.addEventListener("DOMContentLoaded", function () {
         // Sort wonders based on the custom tier order
         wonders.sort((a, b) => tierOrder[a.tier] - tierOrder[b.tier]);
         
-        let currentTierContainer; // Variable to keep track of the current tier container
-        
+        // Iterate through the wonders and set up the event listeners
         wonders.forEach((wonder, index) => {
             // Display tier explanation at the beginning of each tier
             if (index === 0 || wonder.tier !== wonders[index - 1].tier) {
-                // Create a new container for the current tier
-                currentTierContainer = document.createElement("div");
-                currentTierContainer.classList.add("tier-container");
+                // Create a new tier container
+                const currentTierContainer = document.createElement('div');
+                currentTierContainer.classList.add('tier-container');
                 
-                // Display tier explanation at the beginning of each tier
-                const tierExplanation = document.createElement("div");
-                tierExplanation.classList.add("tier-description");
-                tierExplanation.textContent = tierExplanations[wonder.tier];
-                currentTierContainer.appendChild(tierExplanation);
+                // Add the appropriate class based on the wonder's tier
+                if (wonder.tier === "best") {
+                    currentTierContainer.classList.add("best-tier");
+                } else if (wonder.tier === "good") {
+                    currentTierContainer.classList.add("good-tier");
+                } else if (wonder.tier === "niche") {
+                    currentTierContainer.classList.add("niche-tier");
+                } else if (wonder.tier === "not worth") {
+                    currentTierContainer.classList.add("not-worth-tier");
+                }
                 
+                // Create a flex container to house the icon and wonders
+                const tierRowContainer = document.createElement('div');
+                tierRowContainer.classList.add('tier-row-container');
+                
+                // Create a container for the info icon
+                const iconContainer = document.createElement('div');
+                iconContainer.classList.add('icon-container');
+                
+                // Create the info icon image element
+                const infoIcon = document.createElement('img');
+                infoIcon.classList.add('info-icon');
+                infoIcon.src = 'Images/info.png'; // Specify the path to your image
+                infoIcon.alt = 'Information icon';
+                
+                // Create the tooltip span element
+                const tooltip = document.createElement('span');
+                tooltip.classList.add('tooltip');
+                tooltip.textContent = tierExplanations[wonder.tier]; // Set tooltip content
+                
+                // Variables to track hover state and hide timeout
+                let isHoveringOverIcon = false;
+                let isHoveringOverTooltip = false;
+                let hideTimeout;
+                
+                // Function to show the tooltip
+                const showTooltip = () => {
+                    clearTimeout(hideTimeout);
+                    tooltip.style.opacity = '1';
+                };
+                
+                // Function to hide the tooltip with a slight delay
+                const hideTooltip = () => {
+                    hideTimeout = setTimeout(() => {
+                        if (!isHoveringOverIcon && !isHoveringOverTooltip) {
+                            tooltip.style.opacity = '0';
+                        }
+                    }, 300); // Adjust the delay as needed
+                };
+                
+                // Add event listeners to the info icon
+                infoIcon.addEventListener('mouseenter', () => {
+                    isHoveringOverIcon = true;
+                    showTooltip();
+                });
+                infoIcon.addEventListener('mouseleave', () => {
+                    isHoveringOverIcon = false;
+                    hideTooltip();
+                });
+                
+                // Add event listeners to the tooltip
+                tooltip.addEventListener('mouseenter', () => {
+                    isHoveringOverTooltip = true;
+                    showTooltip();
+                });
+                tooltip.addEventListener('mouseleave', () => {
+                    isHoveringOverTooltip = false;
+                    hideTooltip();
+                });
+                
+                // Append the icon and tooltip to the icon container
+                iconContainer.appendChild(infoIcon);
+                iconContainer.appendChild(tooltip);
+                
+                // Append the icon container to the tier row container
+                tierRowContainer.appendChild(iconContainer);
+                
+                // Create a wonders container and add it to the tier row container
+                const wondersContainer = document.createElement('div');
+                wondersContainer.classList.add('wonders-container');
+                
+                // Append the wonders container to the tier row container
+                tierRowContainer.appendChild(wondersContainer);
+                
+                // Append the tier row container to the tier container
+                currentTierContainer.appendChild(tierRowContainer);
+                
+                // Append the tier container to the wonders list
                 wondersList.appendChild(currentTierContainer);
             }
+            // Ensure that wondersContainer is within scope of the current iteration
+            const currentTierContainer = wondersList.querySelectorAll('.tier-container')[wondersList.querySelectorAll('.tier-container').length - 1];
+            const wondersContainer = currentTierContainer.querySelector(".wonders-container");
             
             // Create container for the wonder image
             const wonderContainer = document.createElement("div");
@@ -181,6 +263,8 @@ document.addEventListener("DOMContentLoaded", function () {
             
             // Append the image to the container
             wonderContainer.appendChild(wonderImage);
+            // Append the wonder container to the wonders container
+            wondersContainer.appendChild(wonderContainer);
             
             // Add click event listener to display the wonder description
             wonderImage.addEventListener("click", function () {
