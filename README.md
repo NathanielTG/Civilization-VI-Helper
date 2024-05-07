@@ -7,7 +7,7 @@ Civilization VI Helper
 - [License](#license)
 - [Contact Information](#contact-information)
 - [Project Status](#project-status)
-- 
+
 ## Project Overview
 This is a simple tool for Civ VI players to understand what each wonder does and what each wonder is good for based on the victory type that they are going for. There is also a section that lets the user pick their desired victory types and various civs will highlight, indicating which ones are best for the victory types selected.
 
