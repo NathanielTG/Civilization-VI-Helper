@@ -4,15 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Civilizations - Civilization VI Helper</title>
+    <title>Leaders - Civilization VI Helper</title>
+    
+    <!--Link general sheet and leader sheet-->
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="leaders.css">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
     <link rel="icon" href="Images\logo.png" type="image/png">
 </head>
 
-<body class="civilizations-page">
+<body class="leaders-page">
     <!-- Add a hamburger button -->
     <button id="hamburgerButton" class="hamburger-button">
         <span class="bar"></span>
@@ -23,7 +27,7 @@
     <nav id="navMenu" class="nav-menu">
         <a href="index.html">Home</a>
         <a href="wonders.html">Wonders</a>
-        <a href="leaders.html">Leaders</a>
+        <a href="civilizations.html">Civilizations</a>
     </nav>
     <div class="main-content">
         <h2>Select Your Victory Type(s):</h2>
@@ -60,12 +64,21 @@
             </label>
         </div>
         
-        <div class="civilizations" id="civilizationsList">
-            <!-- Civilizations will be dynamically added here -->
+        <div class="leaders" id="leadersList">
+            <!-- Leaders will be dynamically added here -->
         </div>
     </div>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; <span id="currentYear"></span> Nathaniel Gordon</p>
+        <p>GitHub: <a href="https://github.com/NathanielTG" target="_blank">NathanielTG</a></p>
+    </footer>
+    <script>
+        // Set the current year dynamically
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
     
-    <script src="civsScript.js"></script>
+    <script src="leadersScript.js"></script>
     <script src="hamburgerMenu.js"></script>
 </body>
 

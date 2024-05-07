@@ -725,7 +725,6 @@ body.civilizations-page {
 /* If the exact victory types are matched */
 /******************************************/
 
-
 /* This is for the civilizations. */
 #civilizationsList .exact-match {
     border: 4px solid yellow;
@@ -790,6 +789,10 @@ body.civilizations-page {
     padding: 5px; /* Add padding for spacing */
     border-radius: 4px; /* Optional: rounded corners */
     z-index: 1; /* Make sure tooltip appears on top */
+    display: inline-block;
+    white-space: normal; /* Allows text to wrap */
+    max-width: 200px; /* Set a maximum width for the tooltip */
+    overflow-wrap: break-word; /* Ensures long words wrap at line end */
 }
 
 .civilization .tooltip:after {
