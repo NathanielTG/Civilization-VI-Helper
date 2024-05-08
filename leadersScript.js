@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const checkboxes = document.querySelectorAll("input[type=checkbox]");
     const leadersList = document.getElementById("leadersList");
-    const rightHandContainer = document.getElementById("rightHandContainer");
     
     const leadersData = [
         {
@@ -14,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
             name: "Alexander",
             civilization: "Macedon",
             primaryVictories: ["domination", "science"],
-            secondaryVictories: null
+            secondaryVictories: null,
         },
         {
             name: "Amanitore",
@@ -78,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         {
             name: "Dido",
-            civilization: "Persia",
+            civilization: "Phoenicia",
             primaryVictories: ["domination"],
             secondaryVictories: null
         },
@@ -408,7 +407,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         {
             name: "Theodora",
-            civilization: "Byzantine",
+            civilization: "Byzantium",
             primaryVictories: ["domination", "religion"],
             secondaryVictories: null
         },
@@ -426,7 +425,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         {
             name: "Trajan",
-            civilization: "Scythia",
+            civilization: "Rome",
             primaryVictories: ["domination"],
             secondaryVictories: null
         },
@@ -466,7 +465,7 @@ document.addEventListener("DOMContentLoaded", function () {
             primaryVictories: ["science"],
             secondaryVictories: ["culture", "religion", "diplomacy"]
         },
-
+        
     ];
     
     // Initial rendering on page load
@@ -495,6 +494,7 @@ document.addEventListener("DOMContentLoaded", function () {
         leadersList.innerHTML = ""; // Clear the list
         
         leadersData.forEach(leader => {
+            // Create leader elements and append them to the list
             const leaderElement = document.createElement("div");
             leaderElement.classList.add("leader");
             
@@ -538,21 +538,213 @@ document.addEventListener("DOMContentLoaded", function () {
                 leaderImage.style.filter = 'brightness(25%)';
             }
             
+            /*
             // Create a tooltip element
             const tooltip = document.createElement("div");
             tooltip.classList.add("tooltip");
             tooltip.textContent = leader.name;
-            
+            */
             // Append the image and tooltip to the leader element
             leaderElement.appendChild(leaderImage);
-            leaderElement.appendChild(tooltip);
+            //leaderElement.appendChild(tooltip);
             
             // Append the leader element to the list
             leadersList.appendChild(leaderElement);
+        });
+        
+        // Add event listeners to leader images
+        addLeaderEventListeners();
+    }
+    
+    // Function to add click event listeners to leader images
+    function addLeaderEventListeners() {
+        const leaderImages = document.querySelectorAll(".leader img");
+        
+        leaderImages.forEach(image => {
+            image.addEventListener("click", function () {
+                const leaderName = this.alt;
+                console.log('Clicked leader image with alt:', leaderName); // Debug
+                
+                // Find the leader data from leadersData
+                const leader = leadersData.find(l => l.name === leaderName);
+                console.log('Leader data found:', leader); // Debug
+                
+                // Display the leader details in the right side container
+                displayLeaderDetails(leader);
+            });
+        });
+    }
+    
+    const victoryImageMap = {
+        "domination": "Images/Victory Type Images/Domination_Victory_29.webp",
+        "science": "Images/Victory Type Images/Science_Victory_29.webp",
+        "culture": "Images/Victory Type Images/Culture_Victory_29.webp",
+        "religion": "Images/Victory Type Images/Religious_Victory_29.webp",
+        "diplomacy": "Images/Victory Type Images/Diplomatic_Victory_29.webp"
+    };        
+    
+    function displayLeaderDetails(leader) {
+        // Get the right-hand container element
+        const rightHandContainer = document.getElementById("rightHandContainer");
+        rightHandContainer.innerHTML = ""; // Clear the right-hand container
+        
+        // Create a parent container to hold leader and civ details side by side
+        const leaderCivContainer = document.createElement("div");
+        leaderCivContainer.classList.add('leader-civ-container'); // Add a CSS class for styling
+        
+        // Create a container for leader details (image and h2)
+        const leaderDetailsContainer = document.createElement("div");
+        leaderDetailsContainer.classList.add('leader-details-container'); // Add a CSS class for styling
+        
+        // Create and append the leader image
+        const leaderImage = new Image();
+        leaderImage.src = `Images/Leader Images/${leader.name}.webp`;
+        leaderImage.alt = leader.name;
+        
+        // Create a div container for the leader image
+        const leaderImageDiv = document.createElement("div");
+        leaderImageDiv.classList.add('leader-image-container');
+        leaderImageDiv.appendChild(leaderImage);
+        
+        // Append leader name
+        const leaderNameElement = document.createElement("h2");
+        leaderNameElement.textContent = leader.name;
+        
+        // Append leader image and name to leader details container
+        leaderDetailsContainer.appendChild(leaderImageDiv);
+        leaderDetailsContainer.appendChild(leaderNameElement);
+        
+        // Append leader details container to the leader-civ container
+        leaderCivContainer.appendChild(leaderDetailsContainer);
+        
+        // Create a container for civ details (image and h3)
+        const civDetailsContainer = document.createElement("div");
+        civDetailsContainer.classList.add('civ-details-container'); // Add a CSS class for styling
+        
+        // Create a div container for the civ image
+        const civImageDiv = document.createElement("div");
+        civImageDiv.classList.add('civ-image-container');
+        
+        // Create an image element for the civ image
+        const civImage = new Image();
+        civImage.src = `Images/Civ Images/${leader.civilization} - ${leader.name}.webp`;
+        civImage.alt = leader.civilization;
+        civImageDiv.appendChild(civImage);
+        
+        // Append civ name
+        const civNameElement = document.createElement("h2");
+        civNameElement.textContent = leader.civilization;
+        
+        // Append civ image and name to civ details container
+        civDetailsContainer.appendChild(civImageDiv);
+        civDetailsContainer.appendChild(civNameElement);
+        
+        // Append civ details container to the leader-civ container
+        leaderCivContainer.appendChild(civDetailsContainer);
+        
+        // Append the leader-civ container to the right-hand container
+        rightHandContainer.appendChild(leaderCivContainer);
+        
+        // Create containers for primary and secondary victories
+        const primaryVictoriesContainer = document.createElement("div");
+        primaryVictoriesContainer.classList.add('primary-victories-container');
+        
+        const primaryVictoriesLabel = document.createElement("p");
+        primaryVictoriesLabel.textContent = "Primary Victories:";
+        primaryVictoriesContainer.appendChild(primaryVictoriesLabel);
+        
+        // Create a sub-container for primary victory images
+        const primaryImagesContainer = document.createElement("div");
+        primaryImagesContainer.classList.add('victory-images-container');
+        primaryVictoriesContainer.appendChild(primaryImagesContainer);
+        
+        displayVictoryImages(primaryImagesContainer, leader.primaryVictories, victoryImageMap);
+        
+        rightHandContainer.appendChild(primaryVictoriesContainer);
+        
+        // Create a secondary victories container with header if there are secondary victories
+        if (leader.secondaryVictories && leader.secondaryVictories.length > 0) {
+            const secondaryVictoriesContainer = document.createElement("div");
+            secondaryVictoriesContainer.classList.add('secondary-victories-container');
+            
+            const secondaryVictoriesLabel = document.createElement("p");
+            secondaryVictoriesLabel.textContent = "Secondary Victories:";
+            secondaryVictoriesContainer.appendChild(secondaryVictoriesLabel);
+            
+            // Create a sub-container for secondary victory images and set it to use Flexbox
+            const secondaryImagesContainer = document.createElement("div");
+            secondaryImagesContainer.classList.add('victory-images-container');
+            secondaryVictoriesContainer.appendChild(secondaryImagesContainer);
+            
+            // Display secondary victory images in the sub-container
+            displayVictoryImages(secondaryImagesContainer, leader.secondaryVictories, victoryImageMap);
+            
+            // Append the secondary victories container to the right-hand container
+            rightHandContainer.appendChild(secondaryVictoriesContainer);
+        } else {
+            const noSecondaryVictoriesElement = document.createElement("p");
+            noSecondaryVictoriesElement.textContent = "";
+            rightHandContainer.appendChild(noSecondaryVictoriesElement);
+        }
+    }
+    
+    // Function to capitalize the first letter of a string
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+    
+    // Function to display victory images in the specified container
+    function displayVictoryImages(container, victoryTypes, victoryImageMap) {
+        if (!Array.isArray(victoryTypes)) {
+            console.warn('Victory types should be an array, but got:', victoryTypes);
+            return; // Exit the function early if victoryTypes is not an array
+        }
+        // Existing code to display victory images
+        victoryTypes.forEach(victory => {
+            // Get the victory image path based on the victory type
+            const victoryImagePath = victoryImageMap[victory];
+            
+            // Create a div container for each victory image
+            const victoryImageDiv = document.createElement("div");
+            victoryImageDiv.classList.add('victory-image-container');
+            
+            // Create an image element for the victory image
+            const victoryImage = new Image();
+            victoryImage.src = victoryImagePath;
+            victoryImage.alt = victory;
+            
+            // Append the victory image to the victory image container
+            victoryImageDiv.appendChild(victoryImage);
+            
+            // Create a tooltip element for the victory image
+            const tooltip = document.createElement("div");
+            tooltip.classList.add("tooltip");
+            tooltip.textContent = capitalizeFirstLetter(victory); // Set the victory type as tooltip content
+            
+            // Set initial tooltip visibility and opacity
+            tooltip.style.visibility = 'hidden';
+            tooltip.style.opacity = '0';
+            
+            // Append the tooltip to the victory image container
+            victoryImageDiv.appendChild(tooltip);
+            
+            // Add mouse enter and leave event listeners to the victory image
+            victoryImage.addEventListener("mouseenter", () => {
+                tooltip.style.visibility = 'visible';
+                tooltip.style.opacity = '1';
+            });
+            victoryImage.addEventListener("mouseleave", () => {
+                tooltip.style.visibility = 'hidden';
+                tooltip.style.opacity = '0';
+            });
+            
+            // Append the victory image container to the specified container
+            container.appendChild(victoryImageDiv);
         });
     }
     
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener("change", updateLeaders);
     });
+    
 });

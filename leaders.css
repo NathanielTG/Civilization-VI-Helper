@@ -1,6 +1,30 @@
-/*******************************/
-/*********LEADER IMAGES*********/
-/*******************************/
+/***********************/
+/*LEADERS BODY SETTINGS*/
+/***********************/
+
+.leaders-page {
+    height: 100vh; /* Ensure the container takes up the full height of the viewport */
+    display: flex;
+    flex-direction: column; /* Use flexbox to stack elements vertically */
+    margin: 0;
+}
+
+.leaders-page .main-content {
+    flex: 1;
+}
+
+/***********************/
+/********FOOTER*********/
+/***********************/
+
+.leaders-page footer {
+    flex-shrink: 0; /* Prevent the footer from shrinking */
+}
+
+
+/************************************/
+/*********LEADER GRID IMAGES*********/
+/************************************/
 
 #leadersList img,
 #leadersList img.exact-match {
@@ -30,12 +54,19 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin: 0px 146px;
     gap: 10px;
+    border: 2px solid rgb(255, 255, 255);
+    padding: 10px;
+    flex: 1;
+    padding-right: 10px;
+    overflow-y: auto;
+    max-height: 476px;
+    max-width: 70%;
 }
 
 .leader img {
     width: 75px;
+    cursor: pointer;
 }
 
 .leaders-page .victory-conditions {
@@ -92,4 +123,96 @@ body.leaders-page {
 .leader .tooltip:hover {
     visibility: visible;
     opacity: 1;
+}
+
+/********************************/
+/*CONTAINERS FOR BOTH CONTAINERS*/
+/********************************/
+
+/* Parent container to make child containers appear side by side */
+.leader-containers {
+    display: flex;
+    justify-content: space-evenly; /* Optional: adjust how the leader and civ images are spaced */
+    align-items: flex-start; /* Align items to the top */
+}
+
+/********************************/
+/*RIGHT HAND CONTAINER***********/
+/********************************/
+
+
+/* Style for the right-hand container */
+.rightHandContainer {
+    flex-basis: 300px;
+    height: 500px;
+    overflow-y: scroll;
+    border: 2px solid rgb(255, 255, 255);
+    box-sizing: border-box;
+    padding-top: 22px;
+}
+
+/* Leader and Civ Container */
+.leader-civ-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/********************/
+/*VICTORY CONTAINERS*/
+/********************/
+
+/* Tooltip CSS */
+.tooltip {    
+    transition: all 0.3s ease-in-out;
+}
+
+.rightHandContainer p {
+    margin: 0;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+/* Style for the victory images containers */
+.victory-images-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.primary-victories-container,
+.secondary-victories-container {
+    align-items: center;
+    justify-content: space-around;
+}
+
+.primary-victories-container img, 
+.secondary-victories-container img
+{
+    width: 62px;
+}
+
+/**************************************/
+/*LEADER IMAGE IN RIGHT-HAND CONTAINER*/
+/**************************************/
+
+.leader-civ-container img{
+    width: 86px;
+    height: auto;
+}
+
+.leader-civ-container h2 {
+    font-size: 20px;
+    white-space: normal; /* Allow the text to wrap */
+    word-wrap: break-word; /* Enable breaking words that extend beyond the container width */
+}
+
+/*********************/
+/*CIV-IMAGE-CONTAINER*/
+/*********************/
+
+.civ-image-container img{
+    border-radius: 70%;
 }
