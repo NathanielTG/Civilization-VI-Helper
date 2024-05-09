@@ -253,7 +253,7 @@ document.addEventListener("DOMContentLoaded", function () {
             name: "Montezuma",
             civilization: "Aztec",
             primaryVictories: ["domination"],
-            secondaryVictories: ["religion"]
+            secondaryVictories: null
         },
         {
             name: "Mvemba a Nzinga",
@@ -677,7 +677,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const leader = leadersData.find(l => l.name === leaderName);
                 
                 // Determine if we are on a mobile view (e.g., using CSS media query check)
-                if (window.innerWidth <= 768) { // 768px is a common mobile breakpoint
+                if (window.innerWidth <= 936) { // 768px is a common mobile breakpoint
                     // Open the modal if on mobile view
                     openModal(leader);
                 } else {
