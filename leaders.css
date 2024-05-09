@@ -21,7 +21,6 @@
     flex-shrink: 0; /* Prevent the footer from shrinking */
 }
 
-
 /************************************/
 /*********LEADER GRID IMAGES*********/
 /************************************/
@@ -31,6 +30,14 @@
     width: 75px;
     height: 75px; /* Adjust this as needed */
     box-sizing: border-box; /* Include padding and border in width and height */
+    transition: border 0.3s ease, filter 0.3s ease;
+}
+
+@media (max-width: 936px) {
+    #leadersList img {
+        width: 50px;
+        height: auto;
+    }
 }
 
 #leadersList img.exact-match {
@@ -39,14 +46,16 @@
     border-radius: 50%; /* Optional: rounded corners if needed */
 }
 
-#leadersList img:not(.exact-match) {
-    padding: 4px; /* Match the border width */
+@media (max-width: 936px) {
+    #leadersList img.exact-match {
+        width: 50px;
+        height: auto;
+        border: 2px solid yellow;
+    }
 }
 
-/* Add transition effects to leader images */
-#leadersList img {
-    transition: border 0.3s ease, filter 0.3s ease;
-    /* Transition properties for smoother changes */
+#leadersList img:not(.exact-match) {
+    padding: 4px; /* Match the border width */
 }
 
 #leadersList {
@@ -87,45 +96,6 @@ body.leaders-page {
 }
 
 /********************************/
-/*********LEADER TOOLTIP*********/
-/********************************/
-
-/* Tooltip styling */
-.leader .tooltip {
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility 0.3s ease, opacity 0.3s ease;
-    position: absolute;
-    bottom: 111%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgb(255, 255, 255); /* Tooltip background color */
-    color: rgb(0, 0, 42); /* Tooltip text color */
-    padding: 5px; /* Padding for spacing */
-    border-radius: 4px; /* Rounded corners */
-    z-index: 1; /* Ensure tooltip appears on top */
-}
-
-/* Tooltip arrow styling */
-.leader .tooltip::after {
-    content: '';
-    position: absolute;
-    top: 100%; /* Position below the tooltip */
-    left: 50%; /* Center the arrow */
-    transform: translateX(-50%); /* Adjust horizontal position */
-    border-width: 5px; /* Width of the arrow base */
-    border-style: solid;
-    border-color: white transparent transparent transparent; /* Arrow color and transparent background */
-}
-
-/* Tooltip hover effect on leader image */
-.leader img:hover + .tooltip,
-.leader .tooltip:hover {
-    visibility: visible;
-    opacity: 1;
-}
-
-/********************************/
 /*CONTAINERS FOR BOTH CONTAINERS*/
 /********************************/
 
@@ -143,12 +113,18 @@ body.leaders-page {
 
 /* Style for the right-hand container */
 .rightHandContainer {
-    flex-basis: 300px;
+    flex-basis: 390px;
     height: 500px;
     overflow-y: scroll;
     border: 2px solid rgb(255, 255, 255);
     box-sizing: border-box;
     padding-top: 22px;
+}
+
+@media (max-width: 936px) {
+    .rightHandContainer {
+        flex-basis: 230px;
+    }
 }
 
 /* Leader and Civ Container */
@@ -166,6 +142,10 @@ body.leaders-page {
 /* Tooltip CSS */
 .tooltip {    
     transition: all 0.3s ease-in-out;
+}
+
+.victory-image-container .tooltip {
+    font-size: 14px;
 }
 
 .rightHandContainer p {
@@ -194,6 +174,15 @@ body.leaders-page {
     width: 62px;
 }
 
+@media (max-width: 936px) {
+    .primary-victories-container img, 
+    .secondary-victories-container img
+    {
+        width: 50px;
+    }
+     
+}
+
 /**************************************/
 /*LEADER IMAGE IN RIGHT-HAND CONTAINER*/
 /**************************************/
@@ -203,11 +192,25 @@ body.leaders-page {
     height: auto;
 }
 
-.leader-civ-container h2 {
-    font-size: 20px;
-    white-space: normal; /* Allow the text to wrap */
-    word-wrap: break-word; /* Enable breaking words that extend beyond the container width */
+@media (max-width: 936px) {
+    .leader-civ-container img {
+        width: 58px;
+    }
 }
+
+.leader-civ-container h2 {
+    font-size: 18px;
+    white-space: normal;
+    word-wrap: break-word;
+    max-width: 90px;
+}
+
+@media (max-width: 936px) {
+    .leader-civ-container h2 {
+        font-size: 12px;
+    }
+}
+
 
 /*********************/
 /*CIV-IMAGE-CONTAINER*/

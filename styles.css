@@ -53,12 +53,12 @@
 
 /* Style the bars of the hamburger button */
 .hamburger-button .bar {
-    width: 25px;
-    height: 3px;
-    background-color: white; /* Set the bar color */
-    margin: 4px 0; /* Margin between the bars */
+    width: 31px;
+    height: 4px;
+    background-color: white;
+    margin: 4px 0;
     transition: all 0.3s ease;
-    border-radius: 1px; /* Rounded edges for the bars */
+    border-radius: 20px;
 }
 
 /* Style the navigation menu */
@@ -108,13 +108,14 @@
     /* Show the navigation menu when the hamburger button is active */
     #hamburgerButton.active + #navMenu {
         display: flex;
+        align-items: flex-start;
     }
 }
 
 /* Active state for the hamburger button */
 .hamburger-button.active .bar:nth-child(1) {
     /* Top bar: rotate 45 degrees and translate */
-    transform: rotate(45deg) translate(14px, 12px);
+    transform: rotate(45deg) translate(15px, 13px);
 }
 
 .hamburger-button.active .bar:nth-child(2) {
