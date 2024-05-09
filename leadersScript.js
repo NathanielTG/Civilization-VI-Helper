@@ -556,6 +556,115 @@ document.addEventListener("DOMContentLoaded", function () {
         addLeaderEventListeners();
     }
     
+    // Modal functions
+    function openModal(leader) {
+        // Get the modal and modal content elements
+        const modal = document.getElementById("leaderModal");
+        const modalContent = document.getElementById("modalContent");
+        
+        // Clear previous content
+        modalContent.innerHTML = "";
+        
+        // Display the leader details in the modal
+        displayLeaderDetailsInModal(leader);
+        
+        // Show the modal
+        modal.style.display = "flex";
+    }    
+    
+    function displayLeaderDetailsInModal(leader) {
+        // Get the modal content element
+        const modalContent = document.getElementById("modalContent");
+        modalContent.innerHTML = ""; // Clear existing content in modal content
+    
+        // Create a container to hold leader and civ details side by side
+        const leaderCivContainer = document.createElement("div");
+        leaderCivContainer.classList.add('leader-civ-container'); // Add a CSS class for styling
+    
+        // Create a container for leader details
+        const leaderDetailsContainer = document.createElement("div");
+        leaderDetailsContainer.classList.add('leader-details-container'); // Add a CSS class for styling
+    
+        // Create the leader image
+        const leaderImage = new Image();
+        leaderImage.src = `Images/Leader Images/${leader.name}.webp`;
+        leaderImage.alt = leader.name;
+        
+        // Append leader image
+        leaderDetailsContainer.appendChild(leaderImage);
+        
+        // Append leader name
+        const leaderNameElement = document.createElement("h2");
+        leaderNameElement.textContent = leader.name;
+        leaderDetailsContainer.appendChild(leaderNameElement);
+        
+        // Append leader details container to leader-civ container
+        leaderCivContainer.appendChild(leaderDetailsContainer);
+        
+        // Create a container for civ details
+        const civDetailsContainer = document.createElement("div");
+        civDetailsContainer.classList.add('civ-details-container'); // Add a CSS class for styling
+        
+        // Create civ image
+        const civImage = new Image();
+        civImage.src = `Images/Civ Images/${leader.civilization} - ${leader.name}.webp`;
+        civImage.alt = leader.civilization;
+    
+        // Append civ image
+        civDetailsContainer.appendChild(civImage);
+        
+        // Append civ name
+        const civNameElement = document.createElement("h2");
+        civNameElement.textContent = leader.civilization;
+        civDetailsContainer.appendChild(civNameElement);
+        
+        // Append civ details container to leader-civ container
+        leaderCivContainer.appendChild(civDetailsContainer);
+        
+        // Append leader-civ container to modal content
+        modalContent.appendChild(leaderCivContainer);
+    
+        // Create containers for primary and secondary victories
+        const primaryVictoriesContainer = document.createElement("div");
+        primaryVictoriesContainer.classList.add('primary-victories-container');
+    
+        const primaryVictoriesLabel = document.createElement("p");
+        primaryVictoriesLabel.textContent = "Primary Victories:";
+        primaryVictoriesContainer.appendChild(primaryVictoriesLabel);
+    
+        // Create a sub-container for primary victory images
+        const primaryImagesContainer = document.createElement("div");
+        primaryImagesContainer.classList.add('victory-images-container');
+        primaryVictoriesContainer.appendChild(primaryImagesContainer);
+    
+        // Display primary victory images in the sub-container
+        displayVictoryImages(primaryImagesContainer, leader.primaryVictories, victoryImageMap);
+        
+        // Append primary victories container to modal content
+        modalContent.appendChild(primaryVictoriesContainer);
+    
+        // Check if there are secondary victories
+        if (leader.secondaryVictories && leader.secondaryVictories.length > 0) {
+            const secondaryVictoriesContainer = document.createElement("div");
+            secondaryVictoriesContainer.classList.add('secondary-victories-container');
+            
+            const secondaryVictoriesLabel = document.createElement("p");
+            secondaryVictoriesLabel.textContent = "Secondary Victories:";
+            secondaryVictoriesContainer.appendChild(secondaryVictoriesLabel);
+            
+            // Create a sub-container for secondary victory images
+            const secondaryImagesContainer = document.createElement("div");
+            secondaryImagesContainer.classList.add('victory-images-container');
+            secondaryVictoriesContainer.appendChild(secondaryImagesContainer);
+            
+            // Display secondary victory images in the sub-container
+            displayVictoryImages(secondaryImagesContainer, leader.secondaryVictories, victoryImageMap);
+            
+            // Append secondary victories container to modal content
+            modalContent.appendChild(secondaryVictoriesContainer);
+        }
+    }
+        
     // Function to add click event listeners to leader images
     function addLeaderEventListeners() {
         const leaderImages = document.querySelectorAll(".leader img");
@@ -563,17 +672,39 @@ document.addEventListener("DOMContentLoaded", function () {
         leaderImages.forEach(image => {
             image.addEventListener("click", function () {
                 const leaderName = this.alt;
-                console.log('Clicked leader image with alt:', leaderName); // Debug
                 
                 // Find the leader data from leadersData
                 const leader = leadersData.find(l => l.name === leaderName);
-                console.log('Leader data found:', leader); // Debug
                 
-                // Display the leader details in the right side container
-                displayLeaderDetails(leader);
+                // Determine if we are on a mobile view (e.g., using CSS media query check)
+                if (window.innerWidth <= 768) { // 768px is a common mobile breakpoint
+                    // Open the modal if on mobile view
+                    openModal(leader);
+                } else {
+                    // Otherwise, display leader details in the right-hand container
+                    displayLeaderDetails(leader);
+                }
             });
         });
     }
+    
+    // Call the addLeaderEventListeners function to set up the event listeners
+    addLeaderEventListeners();
+    
+    // Close the modal when the close button is clicked
+    const modal = document.getElementById("leaderModal");
+    const closeModalButton = modal.querySelector(".close");
+    
+    closeModalButton.addEventListener("click", function () {
+        modal.style.display = "none";
+    });
+    
+    // Close the modal when the user clicks outside of the modal content
+    window.addEventListener("click", function (event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    });
     
     const victoryImageMap = {
         "domination": "Images/Victory Type Images/Domination_Victory_29.webp",

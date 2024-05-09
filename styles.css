@@ -42,8 +42,8 @@
 
 /* Style the hamburger button */
 .hamburger-button {
-    left: 50px;
-    display: none; /* Hide the button by default (for larger screens) */
+    left: 28px;
+    display: none;
     flex-direction: column;
     cursor: pointer;
     background: transparent;
@@ -79,10 +79,10 @@
 .nav-menu a {
     font-size: 28px;
     display: block;
+    margin-bottom: 10px;
     color: rgb(0, 0, 42);
     text-decoration: none;
-    margin-bottom: 10px;
-    transition: color 0.2s ease; /* Smooth transition for link color */
+    transition: color 0.2s ease;
 }
 
 /* Mobile view adjustments */
@@ -91,6 +91,9 @@
     .hamburger-button {
         display: flex;
         width: 10%;
+        z-index: 1001;
+        position: fixed;
+        top: 20px;
     }
     
     /* Hide the navigation menu in mobile view */
@@ -103,12 +106,22 @@
         background-color: rgb(255 255 255 / 90%);
         padding: 10px;
         border-radius: 5px;
+        transition: transform 0.3s ease;
+    }
+
+    .nav-menu a {
+        margin: 0;
+        font-size: 20px;
     }
     
     /* Show the navigation menu when the hamburger button is active */
     #hamburgerButton.active + #navMenu {
         display: flex;
         align-items: flex-start;
+        width: auto;
+        top: 21px;
+        flex-direction: row;
+        left: 15%;
     }
 }
 

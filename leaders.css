@@ -73,6 +73,12 @@
     max-width: 70%;
 }
 
+@media (max-width: 768px) {
+    #leadersList {
+        max-width: 86%;
+    }
+}
+
 .leader img {
     width: 75px;
     cursor: pointer;
@@ -106,10 +112,9 @@ body.leaders-page {
     align-items: flex-start; /* Align items to the top */
 }
 
-/********************************/
-/*RIGHT HAND CONTAINER***********/
-/********************************/
-
+/**********************/
+/*RIGHT HAND CONTAINER*/
+/**********************/
 
 /* Style for the right-hand container */
 .rightHandContainer {
@@ -119,11 +124,13 @@ body.leaders-page {
     border: 2px solid rgb(255, 255, 255);
     box-sizing: border-box;
     padding-top: 22px;
+    display: block;
 }
 
 @media (max-width: 936px) {
     .rightHandContainer {
         flex-basis: 230px;
+        display: none;
     }
 }
 
@@ -195,6 +202,7 @@ body.leaders-page {
 @media (max-width: 936px) {
     .leader-civ-container img {
         width: 58px;
+        border-radius: 60%;
     }
 }
 
@@ -211,11 +219,51 @@ body.leaders-page {
     }
 }
 
-
 /*********************/
 /*CIV-IMAGE-CONTAINER*/
 /*********************/
 
 .civ-image-container img{
     border-radius: 70%;
+}
+
+/***********************/
+/*MODAL VIEW FOR MOBILE*/
+/***********************/
+
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scrolling if needed */
+    background-color: rgb(0,0,0); /* Black background */
+    background-color: rgba(0,0,0,0.4); /* Black background with opacity */
+}
+
+.modal-content {
+    background-color: #1b1b1b;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%; /* Adjust the width as needed */
+    max-width: 600px; /* Max width */
+}
+
+.close {
+    color: #aaa;
+    float: left;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
