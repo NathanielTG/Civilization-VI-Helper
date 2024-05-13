@@ -6,8 +6,8 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             name: "Abraham Lincoln",
             civilization: "America",
-            primaryVictories: ["domination"],
-            secondaryVictories: ["diplomacy", "culture", "science"]
+            primaryVictories: ["diplomacy", "culture", "domination"],
+            secondaryVictories: ["science"]
         },
         {
             name: "Alexander",
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
             name: "Amanitore",
             civilization: "Nubia",
             primaryVictories: ["domination"],
-            secondaryVictories: ["religion", "science", "culture", "diplomacy"]
+            secondaryVictories: ["religion"]
         },
         {
             name: "Ambiorix",
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
             name: "Bà Triệu",
             civilization: "Vietnam",
             primaryVictories: ["domination", "culture"],
-            secondaryVictories: ["science", "religion"]
+            secondaryVictories: ["science"]
         },
         {
             name: "Basil II",
@@ -43,97 +43,97 @@ document.addEventListener("DOMContentLoaded", function () {
             name: "Catherine de Medici (Black Queen)",
             civilization: "France",
             primaryVictories: ["culture"],
-            secondaryVictories: ["domination", "diplomacy", "science", "religion"]
+            secondaryVictories: null
         },
         {
             name: "Catherine de Medici (Magnificence)",
             civilization: "France",
             primaryVictories: ["culture"],
-            secondaryVictories: ["domination", "diplomacy", "science", "religion"]
+            secondaryVictories: null
         },
         {
             name: "Chandragupta",
             civilization: "India",
-            primaryVictories: ["religion"],
-            secondaryVictories: ["science", "domination", "culture"]
+            primaryVictories: ["religion", "domination"],
+            secondaryVictories: null
         },
         {
             name: "Cleopatra (Egyptian)",
             civilization: "Egypt",
-            primaryVictories: ["culture", "diplomacy", "religion"],
-            secondaryVictories: ["domination"]
+            primaryVictories: ["culture", "diplomacy"],
+            secondaryVictories: ["religion"]
         },
         {
             name: "Cleopatra (Ptolemaic)",
             civilization: "Egypt",
-            primaryVictories: ["culture", "religion"],
-            secondaryVictories: ["domination"]
+            primaryVictories: ["culture"],
+            secondaryVictories: ["religion"]
         },
         {
             name: "Cyrus",
             civilization: "Persia",
-            primaryVictories: ["domination", "culture"],
-            secondaryVictories: ["religion"]
+            primaryVictories: ["domination"],
+            secondaryVictories: ["religion", "culture"]
         },
         {
             name: "Dido",
             civilization: "Phoenicia",
             primaryVictories: ["domination"],
-            secondaryVictories: ["science", "culture", "religion"]
+            secondaryVictories: null
         },
         {
             name: "Eleanor of Aquitaine (England)",
             civilization: "England",
-            primaryVictories: ["domination", "science"],
-            secondaryVictories: ["culture"]
+            primaryVictories: ["domination"],
+            secondaryVictories: ["culture", "science"]
         },
         {
             name: "Eleanor of Aquitaine (France)",
             civilization: "France",
             primaryVictories: ["culture"],
-            secondaryVictories: ["domination", "science", "religion", "diplomacy"]
+            secondaryVictories: null
         },
         {
             name: "Elizabeth I",
             civilization: "England",
-            primaryVictories: ["domination", "science"],
-            secondaryVictories: ["culture"]
+            primaryVictories: ["domination"],
+            secondaryVictories: ["culture", "science"]
         },
         {
             name: "Frederick Barbarossa",
             civilization: "Germany",
-            primaryVictories: ["domination", "science"],
-            secondaryVictories: ["culture"]
+            primaryVictories: ["domination"],
+            secondaryVictories: ["culture", "science"]
         },
         {
             name: "Gandhi",
             civilization: "India",
             primaryVictories: ["religion"],
-            secondaryVictories: ["science", "culture"]
+            secondaryVictories: null
         },
         {
             name: "Genghis Khan",
             civilization: "Mongolia",
             primaryVictories: ["domination"],
-            secondaryVictories: ["religion"]
+            secondaryVictories: null
         },
         {
             name: "Gilgamesh",
             civilization: "Sumeria",
-            primaryVictories: ["domination"],
-            secondaryVictories: ["science", "culture"]
+            primaryVictories: ["domination", "diplomacy"],
+            secondaryVictories: ["science"]
         },
         {
             name: "Gitarja",
             civilization: "Indonesia",
-            primaryVictories: ["domination"],
-            secondaryVictories: ["science", "culture", "religion"]
+            primaryVictories: ["domination", "religion"],
+            secondaryVictories: ["science", "culture"]
         },
         {
             name: "Gorgo",
             civilization: "Greece",
-            primaryVictories: ["culture"],
-            secondaryVictories: ["domination", "religion", "diplomacy"]
+            primaryVictories: ["domination", "culture"],
+            secondaryVictories: ["diplomacy"]
         },
         {
             name: "Hammurabi",
@@ -145,49 +145,49 @@ document.addEventListener("DOMContentLoaded", function () {
             name: "Harald Hardrada (Konge)",
             civilization: "Norway",
             primaryVictories: ["domination"],
-            secondaryVictories: ["science", "diplomacy", "religion"]
+            secondaryVictories: ["religion"]
         },
         {
             name: "Harald Hardrada (Varangian)",
             civilization: "Norway",
             primaryVictories: ["domination"],
-            secondaryVictories: ["science", "diplomacy", "religion"]
+            secondaryVictories: ["diplomacy", "religion"]
         },
         {
             name: "Hojo Tokimune",
             civilization: "Japan",
-            primaryVictories: ["domination", "science", "culture", "religion"],
-            secondaryVictories: null
+            primaryVictories: ["domination", "culture", "religion"],
+            secondaryVictories: ["science"]
         },
         {
             name: "Jadwiga",
             civilization: "Poland",
-            primaryVictories: ["domination", "religion"],
-            secondaryVictories: ["culture"]
+            primaryVictories: ["religion"],
+            secondaryVictories: ["domination", "culture"]
         },
         {
             name: "Jayavarman VII",
             civilization: "Khmer",
             primaryVictories: ["culture", "religion"],
-            secondaryVictories: ["science", "domination"]
+            secondaryVictories: null
         },
         {
             name: "João III",
             civilization: "Portugal",
             primaryVictories: ["science", "diplomacy"],
-            secondaryVictories: ["domination", "culture"]
+            secondaryVictories: ["domination"]
         },
         {
             name: "John Curtin",
             civilization: "Australia",
             primaryVictories: ["science"],
-            secondaryVictories: ["culture", "religion", "diplomacy", "domination"]
+            secondaryVictories: ["culture", "religion"]
         },
         {
             name: "Julius Caesar",
             civilization: "Rome",
             primaryVictories: ["domination"],
-            secondaryVictories: ["science", "culture"]
+            secondaryVictories: null
         },
         {
             name: "Kristina",
@@ -205,13 +205,13 @@ document.addEventListener("DOMContentLoaded", function () {
             name: "Kublai Khan (Mongolia)",
             civilization: "Mongolia",
             primaryVictories: ["domination"],
-            secondaryVictories: ["science", "culture", "religion"]
+            secondaryVictories: ["science", "culture"]
         },
         {
             name: "Kupe",
             civilization: "Māori",
             primaryVictories: ["culture"],
-            secondaryVictories: ["domination", "religion", "diplomacy"]
+            secondaryVictories: ["religion"]
         },
         {
             name: "Lady Six Sky",
@@ -222,80 +222,80 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             name: "Lautaro",
             civilization: "Mapuche",
-            primaryVictories: ["domination", "culture"],
-            secondaryVictories: ["religion"]
+            primaryVictories: ["domination"],
+            secondaryVictories: ["culture"]
         },
         {
             name: "Ludwig II",
             civilization: "Germany",
-            primaryVictories: ["culture", "science", "domination"],
-            secondaryVictories: null
+            primaryVictories: ["culture"],
+            secondaryVictories: ["science", "domination"]
         },
         {
             name: "Mansa Musa",
             civilization: "Mali",
             primaryVictories: ["religion"],
-            secondaryVictories: ["diplomacy"]
+            secondaryVictories: ["diplomacy", "domination"]
         },
         {
             name: "Matthias Corvinus",
             civilization: "Hungary",
             primaryVictories: ["domination"],
-            secondaryVictories: ["culture", "religion", "diplomacy", "science"]
+            secondaryVictories: ["diplomacy", "culture"]
         },
         {
             name: "Menelik II",
             civilization: "Ethiopia",
             primaryVictories: ["culture", "religion"],
-            secondaryVictories: ["domination"]
+            secondaryVictories: null
         },
         {
             name: "Montezuma",
             civilization: "Aztec",
             primaryVictories: ["domination"],
-            secondaryVictories: ["science", "religion"]
+            secondaryVictories: ["religion", "culture"]
         },
         {
             name: "Mvemba a Nzinga",
             civilization: "Kongo",
             primaryVictories: ["culture"],
-            secondaryVictories: ["science"]
+            secondaryVictories: null
         },
         {
             name: "Nadar Shah",
             civilization: "Persia",
-            primaryVictories: ["domination", "culture"],
-            secondaryVictories: ["religion"]
+            primaryVictories: ["domination"],
+            secondaryVictories: ["religion", "culture"]
         },
         {
             name: "Nzinga Mbande",
             civilization: "Kongo",
             primaryVictories: ["culture"],
-            secondaryVictories: ["science"]
+            secondaryVictories: null
         },
         {
             name: "Pachacuti",
             civilization: "Inca",
             primaryVictories: ["science"],
-            secondaryVictories: ["culture", "domination", "religion"]
+            secondaryVictories: ["culture", "religion"]
         },
         {
             name: "Pedro II",
             civilization: "Brazil",
             primaryVictories: ["culture"],
-            secondaryVictories: ["science", "religion", "domination"]
+            secondaryVictories: ["science", "religion"]
         },
         {
             name: "Pericles",
             civilization: "Greece",
-            primaryVictories: ["culture"],
-            secondaryVictories: ["religion", "diplomacy"]
+            primaryVictories: ["culture", "diplomacy"],
+            secondaryVictories: null
         },
         {
             name: "Peter",
             civilization: "Russia",
-            primaryVictories: ["religion"],
-            secondaryVictories: ["culture", "domination"]
+            primaryVictories: ["culture", "religion"],
+            secondaryVictories: null
         },
         {
             name: "Philip II",
@@ -307,7 +307,7 @@ document.addEventListener("DOMContentLoaded", function () {
             name: "Poundmaker",
             civilization: "Cree",
             primaryVictories: ["diplomacy"],
-            secondaryVictories: ["domination", "science", "culture"]
+            secondaryVictories: null
         },
         {
             name: "Qin Shi Huang (Mandate of Heaven)",
@@ -324,8 +324,8 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             name: "Ramses II",
             civilization: "Egypt",
-            primaryVictories: ["culture", "religion"],
-            secondaryVictories: ["domination"]
+            primaryVictories: ["culture"],
+            secondaryVictories: ["religion"]
         },
         {
             name: "Robert the Bruce",
@@ -343,19 +343,19 @@ document.addEventListener("DOMContentLoaded", function () {
             name: "Saladin (Vizier)",
             civilization: "Arabia",
             primaryVictories: ["science", "religion"],
-            secondaryVictories: ["domination"]
+            secondaryVictories: null
         },
         {
             name: "Sejong",
             civilization: "Korea",
             primaryVictories: ["science"],
-            secondaryVictories: ["domination"]
+            secondaryVictories: null
         },
         {
             name: "Seondeok",
             civilization: "Korea",
             primaryVictories: ["science"],
-            secondaryVictories: ["domination"]
+            secondaryVictories: null
         },
         {
             name: "Shaka",
@@ -367,7 +367,7 @@ document.addEventListener("DOMContentLoaded", function () {
             name: "Simón Bolívar",
             civilization: "Gran Colombia",
             primaryVictories: ["domination"],
-            secondaryVictories: ["religion"]
+            secondaryVictories: null
         },
         {
             name: "Suleiman (Kanuni)",
@@ -385,37 +385,37 @@ document.addEventListener("DOMContentLoaded", function () {
             name: "Sundiata Keita",
             civilization: "Mali",
             primaryVictories: ["culture", "religion"],
-            secondaryVictories: ["diplomacy"]
+            secondaryVictories: ["diplomacy", "domination"]
         },
         {
             name: "Tamar",
             civilization: "Georgia",
-            primaryVictories: ["religion"],
-            secondaryVictories: ["culture", "diplomacy"]
+            primaryVictories: ["religion", "diplomacy"],
+            secondaryVictories: ["culture", "domination"]
         },
         {
             name: "Teddy Roosevelt (Bull Moose)",
             civilization: "America",
-            primaryVictories: ["culture"],
-            secondaryVictories: ["science", "diplomacy"]
+            primaryVictories: ["culture", "diplomacy"],
+            secondaryVictories: ["science"]
         },
         {
             name: "Teddy Roosevelt (Rough Rider)",
             civilization: "America",
             primaryVictories: ["culture", "diplomacy"],
-            secondaryVictories: ["domination"]
+            secondaryVictories: null
         },
         {
             name: "Theodora",
             civilization: "Byzantium",
-            primaryVictories: ["culture", "religion"],
-            secondaryVictories: ["domination"]
+            primaryVictories: ["domination", "religion"],
+            secondaryVictories: null
         },
         {
             name: "Tokugawa",
             civilization: "Japan",
             primaryVictories: ["science"],
-            secondaryVictories: ["domination", "religion"]
+            secondaryVictories: null
         },
         {
             name: "Tomyris",
@@ -427,7 +427,7 @@ document.addEventListener("DOMContentLoaded", function () {
             name: "Trajan",
             civilization: "Rome",
             primaryVictories: ["domination"],
-            secondaryVictories: ["science", "culture"]
+            secondaryVictories: null
         },
         {
             name: "Victoria (Age of Empire)",
@@ -438,20 +438,20 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             name: "Victoria (Age of Steam)",
             civilization: "England",
-            primaryVictories: ["science"],
-            secondaryVictories: ["domination", "culture"]
+            primaryVictories: ["domination"],
+            secondaryVictories: ["science", "culture"]
         },
         {
             name: "Wilfred Laurier",
             civilization: "Canada",
-            primaryVictories: ["culture"],
-            secondaryVictories: ["domination", "science", "diplomacy"]
+            primaryVictories: ["culture", "diplomacy"],
+            secondaryVictories: null
         },
         {
             name: "Wilhelmina",
             civilization: "Netherlands",
             primaryVictories: ["science"],
-            secondaryVictories: ["diplomacy", "culture", "domination"]
+            secondaryVictories: ["culture"]
         },
         {
             name: "Wu Zetian",
