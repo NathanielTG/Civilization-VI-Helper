@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Define tier explanations outside the function
     const tierExplanations = {
         "best": "The wonders in this tier are among the best in the game and you should aim to build these in every single one of your games. These wonders offer bonuses that are universally strong or good, regardless of the victory condition that you are aiming for.",
-        "good": "The wonders in this tier are generally worth building. However, a lot of wonders in this tier are either geared towards specific victory conditions, or require specific scenarios in which the wonder will give useful benefits.",
+        "good": "The wonders in this tier are generally worth building. However, most wonders in this tier are either geared towards specific victory conditions, or require specific scenarios in which this wonder will give useful benefits.",
         "niche": "The wonders in this tier are generally not very good or strong. However, they can serve a purpose or provide benefits in very specific or niche conditions.",
         "not worth": "The wonders in this tier should avoid being built, unless you have nothing else to build. These wonders offer very little for the amount of production that it costs to build them."
     };
@@ -186,7 +186,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         if (!isHoveringOverIcon && !isHoveringOverTooltip) {
                             tooltip.style.opacity = '0';
                         }
-                    }, 300); // Adjust the delay as needed
+                    }, 100); // Adjust the delay as needed
                 };
                 
                 // Add event listeners to the info icon
