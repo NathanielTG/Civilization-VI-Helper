@@ -504,49 +504,36 @@ document.addEventListener("DOMContentLoaded", function () {
             leaderImage.alt = leader.name;
             
             // Initialize match flags
-            let isExactMatch = false;
-            let hasPartialMatch = false;
+            let hasPrimaryMatch = false;
+            let hasSecondaryMatch = false;
             
-            // Check for exact match and partial match with the leader's primary victories
-            if (leader.primaryVictories) {
-                // Ensure primaryVictories is an array
-                const primaryVictories = Array.isArray(leader.primaryVictories) ? leader.primaryVictories : [leader.primaryVictories];
-                
-                // Check if all primary victories match the user's selected primary victories
-                isExactMatch = selectedPrimaryVictories.length === primaryVictories.length &&
-                selectedPrimaryVictories.every(victory => primaryVictories.includes(victory));
-                
-                // Check if at least one primary victory is matched
-                hasPartialMatch = primaryVictories.some(victory => selectedPrimaryVictories.includes(victory));
+            // Check if the leader has any primary victories
+            if (leader.primaryVictories && leader.primaryVictories.length > 0) {
+                // Check if any primary victory matches the user's selected primary victories
+                hasPrimaryMatch = leader.primaryVictories.some(victory => selectedPrimaryVictories.includes(victory));
             }
             
-            // Check for partial match with the leader's backup victories
-            if (leader.secondaryVictories) {
-                hasPartialMatch = hasPartialMatch || leader.secondaryVictories.some(victory => selectedPrimaryVictories.includes(victory));
+            // Check if the leader has any secondary victories
+            if (leader.secondaryVictories && leader.secondaryVictories.length > 0) {
+                // Check if any secondary victory matches the user's selected primary victories
+                hasSecondaryMatch = leader.secondaryVictories.some(victory => selectedPrimaryVictories.includes(victory));
             }
             
             // Apply visual effects based on match conditions
-            if (isExactMatch) {
-                // Apply exact match visual effect (e.g., yellow border)
+            if (hasPrimaryMatch) {
+                // Apply yellow outline and light up for leaders with at least one primary victory matching the user's selection
                 leaderImage.classList.add("exact-match");
-                leaderImage.style.filter = 'brightness(130%)';
-            } else if (hasPartialMatch) {
-                // Light up the image for a partial match (e.g., increase brightness)
-                leaderImage.style.filter = 'brightness(130%)';
+                leaderImage.style.filter = "brightness(130%)";
+            } else if (hasSecondaryMatch) {
+                // Light up the image for leaders with at least one secondary victory matching the user's selection
+                leaderImage.style.filter = "brightness(130%)";
             } else {
                 // Dim the image if there is no match
-                leaderImage.style.filter = 'brightness(25%)';
+                leaderImage.style.filter = "brightness(25%)";
             }
             
-            /*
-            // Create a tooltip element
-            const tooltip = document.createElement("div");
-            tooltip.classList.add("tooltip");
-            tooltip.textContent = leader.name;
-            */
-            // Append the image and tooltip to the leader element
+            // Append the image to the leader element
             leaderElement.appendChild(leaderImage);
-            //leaderElement.appendChild(tooltip);
             
             // Append the leader element to the list
             leadersList.appendChild(leaderElement);
@@ -555,7 +542,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Add event listeners to leader images
         addLeaderEventListeners();
     }
-    
+        
     // Modal functions
     function openModal(leader) {
         // Get the modal and modal content elements

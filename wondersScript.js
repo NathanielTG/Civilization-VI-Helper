@@ -96,10 +96,6 @@ document.addEventListener("DOMContentLoaded", function () {
         { name: "Amundsen-Scott Research Station", victory: ["science"], tier: "good", description: "+5 {scientist_icon} Great Scientist points per turn.<br><br>+20% {science_icon} and +10% {production_icon} Production in all cities. Yields are doubled if there are 5 Snow or Snow Hill tiles within 3 tiles of a city owned by this player.<br><br>Must be built on a Snow or a Snow Hills tile next to Campus with a Research Lab." }
     ];
     
-    checkboxes.forEach(checkbox => {
-        checkbox.addEventListener("change", updateWonders);
-    });
-    
     // Initial rendering on page load
     preloadImages();
     
@@ -377,18 +373,209 @@ document.addEventListener("DOMContentLoaded", function () {
                 descriptionContainer.appendChild(victoryConditionsContainer);
             });
             
+            // Add click event listener to display the wonder description
+            wonderImage.addEventListener("click", function () {
+                openModal(wonder);
+            });
+            
             // Append the wonder container to the tier container
             currentTierContainer.appendChild(wonderContainer);
         });
     }  
     
-    // Code to add event listeners to info icons
+    // Add event listeners to info icons
     const infoIcons = document.querySelectorAll('.tier-row-container .info-icon');
-    
     infoIcons.forEach(infoIcon => {
         const tooltip = infoIcon.nextElementSibling;
         if (tooltip) {
             toggleTooltip(infoIcon, tooltip);
+        }
+    });
+    
+    // Add event listeners to checkboxes
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener("change", updateWonders);
+    });
+    
+    /**
+    * MODAL STUFF
+    */
+    
+    // Open the modal with wonder details
+    function openModal(wonder) {
+        const modal = document.getElementById("wonderModal");
+        const modalContent = document.getElementById("modalContent");
+        
+        // Clear previous content
+        modalContent.innerHTML = "";
+        
+        // Display the wonder details in the modal only in mobile view
+        if (window.innerWidth <= 768) { // Adjust the breakpoint as needed
+            displayWonderDetailsInModal(wonder);
+            modal.style.display = "flex";
+        }
+    }
+    
+    // Display wonder details in the modal
+    function displayWonderDetailsInModal(wonder) {
+        const modalContent = document.getElementById("modalContent");
+        modalContent.innerHTML = ""; // Clear existing content
+        
+        // Create a container for wonder details
+        const wonderDetailsContainer = document.createElement("div");
+        wonderDetailsContainer.classList.add('wonder-details-container'); // Add a CSS class for styling
+        
+        // Create the wonder image
+        const wonderImage = new Image();
+        wonderImage.src = `Images/World Wonder Images/${wonder.name}.webp`;
+        wonderImage.alt = wonder.name;
+        
+        // Append wonder image
+        wonderDetailsContainer.appendChild(wonderImage);
+        
+        // Append wonder name
+        const wonderNameElement = document.createElement("h2");
+        wonderNameElement.textContent = wonder.name;
+        wonderDetailsContainer.appendChild(wonderNameElement);
+        
+        // Append wonder details container to modal content
+        modalContent.appendChild(wonderDetailsContainer);
+        
+        // Generate the description with icons
+        let descriptionWithIcons = wonder.description
+        .replace(/{housing_icon}/g, "<img src='Images/Icon Images/Housing.webp' alt='Housing icon' style='width:16px;height:16px;'>")
+        .replace(/{production_icon}/g, "<img src='Images/Icon Images/Production.webp' alt='Production icon' style='width:16px;height:16px;'>")
+        .replace(/{amenities_icon}/g, "<img src='Images/Icon Images/Amenities.webp' alt='Amenities icon' style='width:16px;height:16px;'>")
+        .replace(/{food_icon}/g, "<img src='Images/Icon Images/Food.webp' alt='Food icon' style='width:16px;height:16px;'>")
+        .replace(/{prophet_icon}/g, "<img src='Images/Icon Images/Prophet.webp' alt='Prophet icon' style='width:16px;height:16px;'>")
+        .replace(/{stone_icon}/g, "<img src='Images/Icon Images/Stone.webp' alt='Stone icon' style='width:16px;height:16px;'>")
+        .replace(/{cattle_icon}/g, "<img src='Images/Icon Images/Cattle.webp' alt='Cattle icon' style='width:16px;height:16px;'>")
+        .replace(/{science_icon}/g, "<img src='Images/Icon Images/Science.webp' alt='Science icon' style='width:16px;height:16px;'>")
+        .replace(/{culture_icon}/g, "<img src='Images/Icon Images/Culture.webp' alt='Culture icon' style='width:16px;height:16px;'>")
+        .replace(/{envoy_icon}/g, "<img src='Images/Icon Images/Envoy.webp' alt='Envoy icon' style='width:16px;height:16px;'>")
+        .replace(/{capital_icon}/g, "<img src='Images/Icon Images/Capital.webp' alt='Capital icon' style='width:16px;height:16px;'>")
+        .replace(/{admiral_icon}/g, "<img src='Images/Icon Images/Admiral.webp' alt='Admiral icon' style='width:16px;height:16px;'>")
+        .replace(/{movement_icon}/g, "<img src='Images/Icon Images/Movement.webp' alt='Movement icon' style='width:16px;height:16px;'>")
+        .replace(/{gold_icon}/g, "<img src='Images/Icon Images/Gold.webp' alt='Gold icon' style='width:16px;height:16px;'>")
+        .replace(/{iron_icon}/g, "<img src='Images/Icon Images/Iron.webp' alt='Iron icon' style='width:16px;height:16px;'>")
+        .replace(/{scientist_icon}/g, "<img src='Images/Icon Images/Scientist.webp' alt='Scientist icon' style='width:16px;height:16px;'>")
+        .replace(/{writing_icon}/g, "<img src='Images/Icon Images/Writing.webp' alt='Writing icon' style='width:16px;height:16px;'>")
+        .replace(/{writer_icon}/g, "<img src='Images/Icon Images/Writer.webp' alt='Writer icon' style='width:16px;height:16px;'>")
+        .replace(/{musician_icon}/g, "<img src='Images/Icon Images/Musician.webp' alt='Musician icon' style='width:16px;height:16px;'>")
+        .replace(/{music_icon}/g, "<img src='Images/Icon Images/Music.webp' alt='Music icon' style='width:16px;height:16px;'>")
+        .replace(/{engineer_icon}/g, "<img src='Images/Icon Images/Engineer.webp' alt='Engineer icon' style='width:16px;height:16px;'>")
+        .replace(/{trade_icon}/g, "<img src='Images/Icon Images/Trade.webp' alt='Trade icon' style='width:16px;height:16px;'>")
+        .replace(/{general_icon}/g, "<img src='Images/Icon Images/General.webp' alt='General icon' style='width:16px;height:16px;'>")
+        .replace(/{promotion_icon}/g, "<img src='Images/Icon Images/Promotion.webp' alt='Promotion icon' style='width:16px;height:16px;'>")
+        .replace(/{religion_icon}/g, "<img src='Images/Icon Images/Religion.webp' alt='Religion icon' style='width:16px;height:16px;'>")
+        .replace(/{relic_icon}/g, "<img src='Images/Icon Images/Relic.webp' alt='Relic icon' style='width:16px;height:16px;'>")
+        .replace(/{military_policy_icon}/g, "<img src='Images/Icon Images/MilitaryPolicyCard.webp' alt='MilitaryPolicyCard icon' style='width:16px;height:16px;'>")
+        .replace(/{diplomacy_policy_icon}/g, "<img src='Images/Icon Images/DiplomaticPolicyCard.webp' alt='DiplomaticPolicyCard icon' style='width:16px;height:16px;'>")
+        .replace(/{wildcard_icon}/g, "<img src='Images/Icon Images/Wildcard.webp' alt='Wildcard icon' style='width:16px;height:16px;'>")
+        .replace(/{economic_policy_icon}/g, "<img src='Images/Icon Images/EconomicPolicyCard.webp' alt='EconomicPolicyCard icon' style='width:16px;height:16px;'>")
+        .replace(/{citizen_icon}/g, "<img src='Images/Icon Images/Citizen.webp' alt='Citizen icon' style='width:16px;height:16px;'>")
+        .replace(/{tourism_icon}/g, "<img src='Images/Icon Images/Tourism.webp' alt='Tourism icon' style='width:16px;height:16px;'>")
+        .replace(/{merchant_icon}/g, "<img src='Images/Icon Images/Merchant.webp' alt='Merchant icon' style='width:16px;height:16px;'>")
+        .replace(/{artist_icon}/g, "<img src='Images/Icon Images/Artist.webp' alt='Artist icon' style='width:16px;height:16px;'>")
+        .replace(/{art_icon}/g, "<img src='Images/Icon Images/Art.webp' alt='Art icon' style='width:16px;height:16px;'>")
+        .replace(/{favor_icon}/g, "<img src='Images/Icon Images/DiplomaticFavor.webp' alt='DiplomaticFavor icon' style='width:16px;height:16px;'>")
+        .replace(/{power_icon}/g, "<img src='Images/Icon Images/Power.webp' alt='Power icon' style='width:16px;height:16px;'>")
+        .replace(/{faith_icon}/g, "<img src='Images/Icon Images/Faith.webp' alt='Faith icon' style='width:16px;height:16px;'>");
+        
+        // Create a container for the wonder description
+        const wonderDescriptionContainer = document.createElement("div");
+        wonderDescriptionContainer.innerHTML = descriptionWithIcons;
+        
+        // Append the wonder description container to modal content
+        modalContent.appendChild(wonderDescriptionContainer);
+        
+        // Display victory conditions the wonder is good for
+        const victoryConditionsContainer = document.createElement("div");
+        victoryConditionsContainer.classList.add("victory-conditions-container");
+        
+        // Append the victory conditions container to modal content
+        modalContent.appendChild(victoryConditionsContainer);
+        
+        // Iterate through wonder victories and add them to the container
+        wonder.victory.forEach(victory => {
+            const victoryContainer = document.createElement("div");
+            victoryContainer.classList.add("victory-container");
+            
+            if (victory === "all") {
+                // Display "All Victory Types" as text
+                const allElement = document.createElement("p");
+                allElement.textContent = "All Victory Types";
+                victoryContainer.appendChild(allElement);
+            } else {
+                // Create a container for the victory image
+                const victoryImageContainer = document.createElement("div");
+                victoryImageContainer.classList.add("victory-image-container");
+                
+                // Append the victory condition image
+                const victoryImage = document.createElement("img");
+                victoryImage.src = victoryConditionsMap[victory].src;
+                victoryImage.alt = victoryConditionsMap[victory].alt;
+                victoryImageContainer.appendChild(victoryImage);
+                
+                // Create a tooltip element and set its class and content
+                const tooltip = document.createElement("div");
+                tooltip.classList.add("victory-tooltip");
+                tooltip.textContent = victoryConditionsMap[victory].alt;
+                tooltip.style.visibility = 'hidden';
+                tooltip.style.opacity = '0';
+                
+                // Add event listeners to show/hide tooltip
+                victoryImage.addEventListener("click", () => {
+                    tooltip.style.visibility = "visible";
+                    tooltip.style.opacity = "1";
+                });
+                victoryImage.addEventListener("mouseleave", () => {
+                    tooltip.style.visibility = "hidden";
+                    tooltip.style.opacity = "0";
+                });
+                
+                // Append the victory condition image and tooltip to the victory container
+                victoryContainer.appendChild(victoryImageContainer);
+                victoryContainer.appendChild(tooltip);
+            }
+            
+            // Append the victory container to the victory conditions container
+            victoryConditionsContainer.appendChild(victoryContainer);
+        });
+        
+    }
+    
+    // Add click event listeners to wonder images
+    function addWonderEventListeners() {
+        const wonderImages = document.querySelectorAll(".wonder img");
+        
+        wonderImages.forEach(image => {
+            image.addEventListener("click", function () {
+                const wonderName = this.alt;
+                
+                // Find the wonder data from wondersData
+                const wonder = wonders.find(w => w.name === wonderName);
+                
+                openModal(wonder);
+            });
+        });
+    }
+    
+    // Call the addWonderEventListeners function to set up the event listeners
+    addWonderEventListeners();
+    
+    // Close the modal when the close button is clicked
+    const modal = document.getElementById("wonderModal");
+    const closeModalButton = modal.querySelector(".close");
+    
+    closeModalButton.addEventListener("click", function () {
+        modal.style.display = "none";
+    });
+    
+    // Close the modal when the user clicks outside of the modal content
+    window.addEventListener("click", function (event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
         }
     });
     

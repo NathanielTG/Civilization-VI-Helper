@@ -150,12 +150,21 @@
     color: rgb(189, 148, 0);
 }
 
+.mobile-menu-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+}  
+
 /**********************************/
 /************MAIN BODY*************/
 /**********************************/
 
 html, body {
     margin: 0; /* Remove default margins */
+    height: 100%;
 }
 
 body {
@@ -190,7 +199,7 @@ body.wonders-page {
 
 @media (max-width: 768px) {
     body.wonders-page {
-        padding-top: 0px;
+        padding-top: 65px;
     }
 }
 
@@ -204,6 +213,12 @@ body.wonders-page {
     filter: brightness(1.2) sepia(1) saturate(10) hue-rotate(13deg);
 }
 
+@media (max-width: 768px) {
+    .wonder-container img:hover {
+        filter: none;
+    }    
+}
+
 .tier-description {
     margin: 12px 0px;
 }
@@ -212,7 +227,6 @@ body.wonders-page {
 .mainContainer {
     display: flex;
     justify-content: space-evenly;
-    height: 100%;
     margin: 0 26px;
 }
 
@@ -343,24 +357,47 @@ body.wonders-page {
 
 /* Style the wonders list */
 #wondersList {
-    border-radius: 12px;
-    padding: 5px; /* Optional: Add padding for spacing */
-    width: 65%; /* Adjust the width of the wonders list as needed */
-    height: 100%; /* Make sure the wonders list takes up the full height of the parent container */
-    overflow-y: auto; /* Allow scrolling if there are many wonders */
-    padding-right: 10px; /* Add padding to the right side */
+    border-radius: 6px;
+    padding: 5px;
+    width: 65%;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    border: 2px solid rgb(255, 255, 255);
+    padding: 10px;
+    flex: 1;
+    padding-right: 10px;
+    overflow-y: auto;
+    max-width: 100%;
+    overflow-y: auto;
+    padding-right: 10px;
     text-align: center;
 }
+
+@media (max-width: 768px) {
+    #wondersList {
+        width: 100%;
+    }
+}
+
 
 /* Style the description container */
 #descriptionContainer {
     border-radius: 12px;
     outline: 2px solid #ffffff33;
-    width: 30%; /* Adjust the width as needed */
-    float: right; /* Float the container to the right */
-    padding: 10px; /* Add padding for spacing */
-    color: rgb(255, 255, 255); /* Set the text color to white */
+    width: 30%;
+    float: right;
+    padding: 10px;
+    overflow-y: scroll;
+    color: rgb(255, 255, 255);
     text-align: center;
+}
+
+@media (max-width: 768px) {
+    #descriptionContainer {
+        display: none;
+    }
 }
 
 /* Victory conditions container styles */
@@ -466,63 +503,6 @@ body.wonders-page {
     
 }
 
-/* Styles for the modal container */
-
-/* Hide close button in desktop view */
-@media (min-width: 769px) {
-    .close-btn {
-        display: none;
-    }
-}
-
-/* Media query for mobile view */
-@media (max-width: 768px) {
-    /* Modal container */
-    .wonder-modal {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        padding: 10px;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0.5);
-        justify-content: center;
-        align-items: center;
-    }
-
-    /* Modal content */
-    .modal-content {
-        background-color: #fff;
-        margin: auto;
-        padding: 20px;
-        border-radius: 10px;
-        max-width: 90%;
-        text-align: center;
-    }
-
-    /* Close button */
-    .close-modal {
-        position: absolute;
-        top: 10px;
-        right: 20px;
-        font-size: 24px;
-        cursor: pointer;
-    }
-
-    /* Optional: style the close button if you have one */
-    #descriptionContainer .close-btn {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        cursor: pointer;
-        font-size: 1.5rem;
-        color: black;
-    }  
-}
-
 .wonder-container {
     position: relative;
     display: inline-block;
@@ -594,6 +574,7 @@ body.wonders-page {
 .victory-conditions input[type="checkbox"] {
     display: none;
 }
+
 
 /**********************************/
 /*********VICTORY TYPES**********/
