@@ -18,19 +18,19 @@
 
 <body class="leaders-page">
     <div class="mobile-menu-container">
-    <!-- Add a hamburger button -->
-    <button id="hamburgerButton" class="hamburger-button">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </button>
-    <!-- Add a navigation menu -->
-    <nav id="navMenu" class="nav-menu">
-        <a href="index.html">Home</a>
-        <a href="wonders.html">Wonders</a>
-    </nav>
-</div>
-
+        <!-- Add a hamburger button -->
+        <button id="hamburgerButton" class="hamburger-button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <!-- Add a navigation menu -->
+        <nav id="navMenu" class="nav-menu">
+            <a href="index.html">Home</a>
+            <a href="wonders.html">Wonders</a>
+        </nav>
+    </div>
+    
     <div class="main-content">
         <h2>Select Your Victory Type(s):</h2>
         <div class="victory-conditions">
@@ -65,6 +65,22 @@
                 <div class="tooltip">Diplomacy</div>
             </label>
         </div>
+
+        <!-- Icon container -->
+        <div id="iconContainer">
+            <!-- Icon image -->
+            <img id="legendIcon" src="Images/info.png" alt="Legend Icon">
+        </div>
+        
+        <!-- Modal container -->
+        <div id="legendModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <!-- Close button -->
+                <span class="close">&times;</span>
+            </div>
+        </div>
+        
         <div class="leader-containers">
             <div class="leaders" id="leadersList">
                 <!-- Leaders will be dynamically added here -->
@@ -84,8 +100,10 @@
         document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
     
+    <!--Scripts-->
     <script src="leadersScript.js"></script>
     <script src="hamburgerMenu.js"></script>
+    <script src="iconModal.js"></script>
     
     <!--Modal-->
     <div id="leaderModal" class="modal">

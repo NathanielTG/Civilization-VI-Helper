@@ -378,6 +378,8 @@ body.wonders-page {
 @media (max-width: 768px) {
     #wondersList {
         width: 100%;
+        overflow-y: scroll;
+        max-height: 500px;
     }
 }
 
@@ -418,7 +420,7 @@ body.wonders-page {
 .victory-conditions-container img {
     margin: 0px 5px; /* Add margin between images */
     position: relative; /* Position tooltip relative to the image */
-    width: 70px;
+    width: 52px;
 }
 
 .victory-conditions-container p {
